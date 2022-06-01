@@ -6,6 +6,7 @@ import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implemen
 import com.dace.project.Auction.Bidding.Project.Service.Category_Service_Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,14 +25,23 @@ public class AuctionController {
 
     //***************************************AUCTION API********************************************************
 
-    @PostMapping(value = "/createAuction")
-    public Auction_Product createAuctionProduct(@RequestBody Auction_Product product){
 
-        Auction_Product auctionProduct = auctionServiceImplementation.createAuctionProduct(product);
+//    @GetMapping("/createAuction")
+//    public String createAuctionPage(Model model){
+//
+//        model.addAttribute("categories",categoryServiceImplementation.getAllCategory());
+//
+//        return "CreateAuction";
+//    }
 
-        return auctionProduct;
-
-    }
+//    @PostMapping(value = "/createAuction")
+//    public String createAuctionProduct(@RequestBody Auction_Product product){
+//
+//        Auction_Product auctionProduct = auctionServiceImplementation.createAuctionProduct(product);
+//
+//        return "index";
+//
+//    }
 
     @GetMapping("/auction")
     public List<Auction_Product> getAllAuctionProducts(){

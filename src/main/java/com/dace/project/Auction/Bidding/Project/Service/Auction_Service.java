@@ -1,5 +1,6 @@
 package com.dace.project.Auction.Bidding.Project.Service;
 
+import com.dace.project.Auction.Bidding.Project.DTO.CreateAuctionDTO;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
 import com.dace.project.Auction.Bidding.Project.Model.Category;
 import org.springframework.web.multipart.MultipartFile;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public interface Auction_Service {
 
-    public Auction_Product createAuctionProduct(Auction_Product product);
+    public Auction_Product createAuctionProduct(CreateAuctionDTO product, MultipartFile file);
 
     public Auction_Product updateAuctionProduct(Auction_Product product,Long id);
 

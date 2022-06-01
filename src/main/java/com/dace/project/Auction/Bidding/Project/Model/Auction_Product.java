@@ -1,8 +1,11 @@
 package com.dace.project.Auction.Bidding.Project.Model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,9 +21,9 @@ public class Auction_Product {
 
     private double auctionStartingPrice;
 
-    private String auctionPostedDate;
+    private LocalDateTime auctionPostedDate;
 
-    private String auctionEndingDate;
+    private LocalDateTime auctionEndingDate;
 
     private Long auctionCategoryId;
 
@@ -40,7 +43,7 @@ public class Auction_Product {
     public Auction_Product() {
     }
 
-    public Auction_Product(Long auctionId, User auctionBy, String auctionTitle, double auctionStartingPrice, String auctionPostedDate, String auctionEndingDate, Long auctionCategoryId, Category auctionCategory, String auctionDescription, int active, String images) {
+    public Auction_Product(Long auctionId, User auctionBy, String auctionTitle, double auctionStartingPrice, LocalDateTime auctionPostedDate, LocalDateTime auctionEndingDate, Long auctionCategoryId, Category auctionCategory, String auctionDescription, int active, String images) {
         this.auctionId = auctionId;
         this.auctionBy = auctionBy;
         this.auctionTitle = auctionTitle;
@@ -86,19 +89,19 @@ public class Auction_Product {
         this.auctionStartingPrice = auctionStartingPrice;
     }
 
-    public String getAuctionPostedDate() {
+    public LocalDateTime getAuctionPostedDate() {
         return auctionPostedDate;
     }
 
-    public void setAuctionPostedDate(String auctionPostedDate) {
+    public void setAuctionPostedDate(LocalDateTime auctionPostedDate) {
         this.auctionPostedDate = auctionPostedDate;
     }
 
-    public String getAuctionEndingDate() {
+    public LocalDateTime getAuctionEndingDate() {
         return auctionEndingDate;
     }
 
-    public void setAuctionEndingDate(String auctionEndingDate) {
+    public void setAuctionEndingDate(LocalDateTime auctionEndingDate) {
         this.auctionEndingDate = auctionEndingDate;
     }
 

@@ -1,14 +1,23 @@
 package com.dace.project.Auction.Bidding.Project.Service;
 
+import com.dace.project.Auction.Bidding.Project.DTO.CreateAuctionDTO;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
 import com.dace.project.Auction.Bidding.Project.Model.Category;
 import com.dace.project.Auction.Bidding.Project.Model.User;
 import com.dace.project.Auction.Bidding.Project.Repository.AuctionRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.CategoryRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.UserRepository;
+import com.dace.project.Auction.Bidding.Project.Utlities.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.DateUtils;
 
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.List;
 @Service
 public class Auction_Service_implementation implements Auction_Service {
@@ -24,26 +33,32 @@ public class Auction_Service_implementation implements Auction_Service {
 
 
     @Override
-    public Auction_Product createAuctionProduct(Auction_Product product) {
+    public Auction_Product createAuctionProduct(CreateAuctionDTO product, MultipartFile multipartFile) {
 
 
         Auction_Product auctionProduct = new Auction_Product();
-        Category category = categoryRepository.findById(product.getAuctionCategoryId()).get();
+        Category category = categoryRepository.findById(product.getCategory()).get();
         Long id = Long.valueOf(1);
         User user = userRepository.findById(id).get();
 
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+
 
         auctionProduct.setAuctionBy(user);
-        auctionProduct.setAuctionTitle(product.getAuctionTitle());
-        auctionProduct.setAuctionStartingPrice(product.getAuctionStartingPrice());
-        auctionProduct.setAuctionPostedDate(product.getAuctionPostedDate());
-        auctionProduct.setAuctionEndingDate(product.getAuctionEndingDate());
-        auctionProduct.setAuctionCategoryId(product.getAuctionCategoryId());
+        auctionProduct.setAuctionTitle(product.getTitle());
+        auctionProduct.setAuctionStartingPrice(product.getStartingPrice());
+        auctionProduct.setAuctionPostedDate(LocalDateTime.now());
+        auctionProduct.setAuctionEndingDate(DateUtil.getDate(product.getEndingDate()));
+        auctionProduct.setAuctionCategoryId(product.getCategory());
         auctionProduct.setAuctionCategory(category);
-        auctionProduct.setAuctionDescription(product.getAuctionDescription());
-        auctionProduct.setActive(product.getActive());
-        auctionProduct.setImages(product.getImages());
-
+        auctionProduct.setAuctionDescription(product.getDescription());
+        auctionProduct.setActive(1);
+        try {
+            auctionProduct.setImages(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         return auctionRepository.save(auctionProduct);

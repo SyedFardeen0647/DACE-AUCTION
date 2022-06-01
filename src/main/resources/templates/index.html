@@ -211,7 +211,7 @@
                         <div th:each="product : ${allAuction}" class="product-item" th:classappend="${product.auctionCategory.categoryId}" >
                             <div class="product discount product_filter">
                                 <div class="product_image">
-                                    <img src="images/product_1.png" alt="">
+                                    <img th:src="@{data:image/jpeg;base64,{source}(source=${product.images})}" alt="">
                                 </div>
                                 <div class="favorite favorite_left"></div>
                                 <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>New</span></div>
@@ -292,7 +292,7 @@
                               <div class="product-item ">
                                 <div class="product">
                                     <div class="product_image">
-                                        <img src="images/product_2.png" alt="">
+                                        <img th:src="@{data:image/jpeg;base64,{source}(source=${winner.auctionProduct.images})}" alt="">
                                     </div>
                                     <div class="favorite"></div>
                                     <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>won</span></div>
