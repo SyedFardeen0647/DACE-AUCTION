@@ -289,27 +289,26 @@
 
 
                             <div class="owl-item product_slider_item" th:each="winner : ${winners}">
-                              <div class="product-item ">
-                                <div class="product">
-                                    <div class="product_image">
-                                        <img th:src="@{data:image/jpeg;base64,{source}(source=${winner.auctionProduct.images})}" alt="">
-                                    </div>
-                                    <div class="favorite"></div>
-                                    <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>won</span></div>
-                                    <div class="product_info">
-                                        <h6 class="product_name"><a href="single.html" th:text="${winner.auctionProduct.auctionTitle}"></a></h6>
-                                        <br>
-                                        <div class="product_price">Auction for ₹[[${winner.winningBidPrice}]]</div>
-                                        <br>
-                                        <h5 class="product_name"><a href="single.html">Winner:[[${winner.auctionWonBy.userName}]]</a></h5>
+                                <div class="product-item">
+                                    <div class="product discount">
+                                        <div class="product_image img_marg">
+                                            <img th:src="@{data:image/jpeg;base64,{source}(source=${winner.auctionProduct.images})}" alt="">
+
+                                        </div>
+                                        <div class="favorite favorite_left"></div>
+                                        <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>won</span></div>
+                                        <div class="product_info">
+                                            <h6 class="product_name" th:text="${winner.auctionProduct.auctionTitle}" ></h6>
+                                            <div class="product_price">Auction for ₹[[${winner.winningBidPrice}]]</div>
+                                            <hr>
+                                            <h6 class="product_name">Winner:[[${winner.auctionWonBy.userName}]]</h6>
+                                            <hr>
+
+                                        </div>
                                     </div>
                                 </div>
-                              </div>
-                           </div>
-
+                            </div>
                         </div>
-
-
 
                         <!-- Slider Navigation -->
 
