@@ -93,6 +93,44 @@ function awardBid(id){
 </script>
 
 
+<script th:inline="javascript">
+// Set the date we're counting down to
+
+
+var dates= [[${endDate}]] ;
+
+var countDownDate = new Date(dates).getTime();
+
+// Update the count down every 1 second3
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+    document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    + minutes + "m " + seconds + "s ";
+
+    // If the count down is over, write some text
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("demo").innerHTML = "EXPIRED";
+        document.getElementById("bidBtn").disabled = true;
+        document.getElementById("bidPrice").disabled = true;
+    }
+}, 1000);
+</script>
+
+
 
 
 
@@ -165,27 +203,18 @@ function awardBid(id){
     </div>
 
     <div class="row">
-      <div class="col-lg-7">
+      <div class="col-lg-6">
         <div class="single_product_pics">
           <div class="row">
-            <div class="col-lg-3 thumbnails_col order-lg-1 order-2">
-              <div class="single_product_thumbnails">
-                <ul>
-                  <li><img src="/images/single_1_thumb.jpg" alt="" data-image="/images/single_1.jpg"></li>
-                  <li class="active"><img src="/images/single_2_thumb.jpg" alt="" data-image="/images/single_2.jpg"></li>
-                  <li><img src="/images/single_3_thumb.jpg" alt="" data-image="/images/single_3.jpg"></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-9 image_col order-lg-2 order-1">
+            <div class="col-lg-12 image_col order-lg-2 order-1">
               <div class="single_product_image">
-                <div class="single_product_image_background" style="background-image:url(/images/single_2.jpg)"></div>
+                <div class="single_product_image_background" th:style=" 'background-image:url(' + @{data:image/jpeg;base64,{source}(source=${auction.images})} +');' "></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-lg-6">
         <div class="product_details">
           <div class="product_details_title">
             <h2 th:text="${auction.auctionTitle}"></h2>
@@ -193,7 +222,7 @@ function awardBid(id){
           </div>
 
           <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-            <span class="ti-truck"></span><span>Timer....</span>
+            <span class="ti-timer"></span><span id="demo" th:text="${endDate}"> </span>
           </div>
           <div class="original_price"></div>
           <div class="product_price" th:text="₹+${auction.auctionStartingPrice}"></div>

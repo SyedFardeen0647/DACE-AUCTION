@@ -64,10 +64,21 @@
 	{
 		min-height: 475px;
 		height: calc(100vw / 1.714);
+		background-repeat: no-repeat;
+	    background-size: cover;
+	    background-position: center center;
+		display: flex;
+	    align-items: center;
+	    justify-content: flex-start;
 	}
 	.main_slider_content
 	{
-		width: 80%;
+		box-sizing: border-box;
+		display: flex;
+	    margin-left: 5%;
+	    width: 50%;
+	    height: 50%;
+	    flex-direction: column;
 	}
 	.banner_item
 	{
@@ -107,7 +118,28 @@
 
 @media only screen and (max-width: 1024px)
 {
-	
+
+	.main_slider
+	{
+		min-height: 405px;
+		height: calc(100vw / 1.714);
+		background-repeat: no-repeat;
+	    background-size: cover;
+	    background-position: center center;
+		display: flex;
+	    align-items: center;
+	    justify-content: flex-start;
+	}
+	.main_slider_content
+	{
+		box-sizing: border-box;
+		display: flex;
+	    margin-left: 5%;
+	    width: 50%;
+	    height: 50%;
+	    flex-direction: column;
+	}
+
 }
 
 /************
@@ -116,6 +148,30 @@
 
 @media only screen and (max-width: 991px)
 {
+
+	/* .main_slider
+	{
+		min-height: 305px;
+		height: calc(100vw / 1.714);
+		background-repeat: no-repeat;
+	    background-size: cover;
+	    background-position: center center;
+		display: flex;
+	    align-items: center;
+	    justify-content: flex-start;
+	} */
+	/* .main_slider_content
+	{
+		box-sizing: border-box;
+		display: flex;
+	    margin-left: 5%;
+	    width: 50%;
+	    height: 50%;
+	    flex-direction: column;
+	} */
+
+
+
 	h1{font-size: 48px;}
 	h2{font-size: 36px;}
 	.main_slider_content h6
@@ -145,10 +201,23 @@
 	.main_slider
 	{
 		margin-top: 100px;
+		min-height: 305px;
+		height: calc(100vw / 1.714);
+		background-repeat: no-repeat;
+	    background-size: cover;
+	    background-position: center center;
+		display: flex;
+	    align-items: center;
+	    justify-content: flex-start;
 	}
 	.main_slider_content
 	{
-		width: 100%;
+		box-sizing: border-box;
+		display: flex;
+	    margin-left: 5%;
+	    width: 50%;
+	    height: 50%;
+	    flex-direction: column;
 		padding-right: 15px;
 	}
 	.banner_item
@@ -170,21 +239,21 @@
 		width: 25%;
 	}
 	.deal_ofthe_week_col
-	{
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
+    {
+    		/* display: -webkit-box;
+    		display: -moz-box;
+    		display: -ms-flexbox;
+    		display: -webkit-flex;
+    		display: flex;
+    		flex-direction: column;
+    		justify-content: center;
+    		align-items: center;
+    		position: absolute; */
+    		top: 0;
+    		left: 0;
+    		width: 100%;
+    		height: 100%;
+    }
 	.deal_ofthe_week_content
 	{
 		position: relative;
@@ -268,7 +337,7 @@
 
 @media only screen and (max-width: 959px)
 {
-	
+
 }
 
 /************
@@ -277,7 +346,7 @@
 
 @media only screen and (max-width: 880px)
 {
-	
+
 }
 
 /************
@@ -286,7 +355,7 @@
 
 @media only screen and (max-width: 768px)
 {
-	
+
 }
 
 /************
@@ -413,7 +482,7 @@
 
 @media only screen and (max-width: 539px)
 {
-	
+
 }
 
 /************
@@ -422,7 +491,7 @@
 
 @media only screen and (max-width: 480px)
 {
-	
+
 }
 
 /************
@@ -487,12 +556,12 @@
 	{
 		width: 15px;
 		height: 15px;
-		font-size: 10px;		
+		font-size: 10px;
 	}
 	.main_slider
 	{
-		height: calc(100vh - 70px);
-		/*height: 80vw;*/
+		/* height: calc(100vh - 70px); */
+		height: 60vw;
 		min-height: auto;
 		margin-top: 70px;
 	}
@@ -506,7 +575,7 @@
 	}
 	.shop_now_button
 	{
-		margin-top: 15px;
+		margin-top: 3px;
 		width: 100px;
 		height: 35px;
 	}

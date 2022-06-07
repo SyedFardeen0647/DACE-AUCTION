@@ -840,10 +840,13 @@ section
 {
 	background: #FE7C7F !important;
 }
+a:not([href]):not([tabindex]){
+	color: white;
+}
 .red_button a
 {
 	display: block;
-	color: #FFFFFF;
+	color: white;
 	text-transform: uppercase;
 	font-size: 12px;
 	font-weight: 500;
@@ -997,8 +1000,9 @@ section
 }
 .free_delivery
 {
-	background: #f5f5f5;
+	background: #fe4c50;
 	margin-top: 53px;
+	color:white;
 }
 .free_delivery i
 {
@@ -1113,7 +1117,7 @@ section
 .add_to_cart_button
 {
 	width: 160px;
-	margin-left: 19px;
+
 	font-size: 12px !important;
 }
 .product_favorite
