@@ -18,7 +18,7 @@ public interface User_Service {
 
     public User findByUserName(String userName);
 
-    public User findByUserNameAndPassword(String userName , String password);
+//    public User findByUserNameAndPassword(String userName , String password);
 
     public User findByEmail(String email);
 }

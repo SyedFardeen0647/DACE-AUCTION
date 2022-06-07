@@ -12,7 +12,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long userId;
 
-    private String userName;
+    private String username;
 
     private String password;
 
@@ -31,9 +31,10 @@ public class User {
     public User() {
     }
 
-    public User(Long userId, String userName, String password, String email, String phoneNumber, String address, Integer question, String answer, Integer active) {
+
+    public User(Long userId, String username, String password, String email, String phoneNumber, String address, Integer question, String answer, Integer active) {
         this.userId = userId;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -51,12 +52,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -119,7 +120,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +

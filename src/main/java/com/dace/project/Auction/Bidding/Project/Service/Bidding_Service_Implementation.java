@@ -59,7 +59,7 @@ public class Bidding_Service_Implementation implements Bidding_Service{
         for(Auction_Bids bid : auctionBids) {
             html+="								<tr>\n" +
                     "						     	<td>"+(count++)+"</td>\n" +
-                    "						     	<td>"+bid.getCustomer().getUserName()+" </td>\n" +
+                    "						     	<td>"+bid.getCustomer().getUsername()+" </td>\n" +
                     "						     	<td>"+bid.getBidOn()+" </td>\n" +
                     "						     	<td>"+bid.getBidPrice()+" </td>\n";
 //            if(whoAmI.getUserId()==bid.getCustomer().getUserId() && winner==null) {

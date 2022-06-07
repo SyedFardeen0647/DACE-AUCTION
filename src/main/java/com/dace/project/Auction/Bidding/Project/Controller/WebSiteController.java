@@ -36,7 +36,7 @@ public class WebSiteController {
     @Autowired
     private User_Service_Implementation userServiceImplementation;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String testingHtml(Model model){
 
 
@@ -54,12 +54,22 @@ public class WebSiteController {
         if(count!=null && count.equals("0"))
             return "Banned";
 
+
+
         model.addAttribute("myUser", new User());
         return principal==null ? "Login" : "/";
     }
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     public String errorPage() {
         return "Index";
+    }
+    @RequestMapping("/secret/index")
+    @ResponseBody
+    public String textIndex(Model model) {
+
+        System.out.println("This method is called");
+
+        return "index";
     }
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
@@ -70,7 +80,7 @@ public class WebSiteController {
         if(userServiceImplementation.findByEmail(user.getEmail()) != null)
             return "Email Already Registered";
 
-        else if(userServiceImplementation.findByUserName(user.getUserName())!=null)
+        else if(userServiceImplementation.findByUserName(user.getUsername())!=null)
             return "Username Taken";
 
         else {

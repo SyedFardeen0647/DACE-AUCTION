@@ -27,6 +27,7 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.csrf().disable();
         http
                 .authorizeRequests()
@@ -41,12 +42,9 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
                 .alwaysRemember(true)
                 .and()
                 .logout()
-                .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .and()
                 .exceptionHandling().accessDeniedPage("/");
-
-
     }
 
     @Override

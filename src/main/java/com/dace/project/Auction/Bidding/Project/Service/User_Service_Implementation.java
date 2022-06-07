@@ -16,7 +16,7 @@ public class User_Service_Implementation implements User_Service{
     public User saveUser(User user) {
         User user1 = new User();
         user1.setUserId(user.getUserId());
-        user1.setUserName(user.getUserName());
+        user1.setUsername(user.getUsername());
         user1.setPassword(user.getPassword());
         user1.setEmail(user.getEmail());
         user1.setPhoneNumber(user.getPhoneNumber());
@@ -31,7 +31,7 @@ public class User_Service_Implementation implements User_Service{
     public User updateUser(User user, Long id) {
         User user1 = userRepository.findById(id).get();
         user1.setUserId(user.getUserId());
-        user1.setUserName(user.getUserName());
+        user1.setUsername(user.getUsername());
         user1.setPassword(user.getPassword());
         user1.setEmail(user.getEmail());
         user1.setPhoneNumber(user.getPhoneNumber());
@@ -62,13 +62,14 @@ public class User_Service_Implementation implements User_Service{
 
     @Override
     public User findByUserName(String userName) {
-        return userRepository.findByUserName(userName);
+
+        return userRepository.findByUsername(userName);
     }
 
-    @Override
-    public User findByUserNameAndPassword(String userName, String password) {
-        return userRepository.findByUserNameAndPassword(userName,password);
-    }
+//    @Override
+//    public User findByUserNameAndPassword(String userName, String password) {
+//        return userRepository.findByUserNameAndPassword(userName,password);
+//    }
 
     @Override
     public User findByEmail(String email) {

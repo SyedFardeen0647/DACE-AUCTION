@@ -11,6 +11,7 @@ import java.util.Collections;
 public class UserSecurityDetailsImpl implements UserDetails{
 
 
+    private static final long serialVersionUID = 1666109364335238128L;
 
     private User user;
 
@@ -30,7 +31,7 @@ public class UserSecurityDetailsImpl implements UserDetails{
 
     @Override
     public String getUsername() {
-        return user.getUserName();
+        return user.getUsername();
     }
 
     @Override

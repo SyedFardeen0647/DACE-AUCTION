@@ -29,7 +29,7 @@
 <!--****************************************SIGN UP FORM************************************************ -->
 <!--       th:action="@{/signUp}" -->
 	    <form  th:object="${myUser}" class="register-form"  id="regForm" method="post" onsubmit="return false">
-	      <input type="text" id="cuser" placeholder="name" th:field="*{userName}" required/>
+	      <input type="text" id="cuser" placeholder="name" th:field="*{username}" required/>
        		
 	      <input type="password" id="cpass" placeholder="password" th:field="*{password}" required/>
       	  <input type="text" id="address" placeholder="address" th:field="*{address}" required/>
@@ -54,7 +54,7 @@
  
 	     <form  th:object="${myUser}" id="loginForm" method="post" class="login-orm" onsubmit="return false">
     
-	      <input type="text" id="user" placeholder="username" name="username" th:field="*{userName}" required/>
+	      <input type="text" id="user" placeholder="username" name="username" th:field="*{username}" required/>
 	      <input type="password" id="pass" placeholder="password" name="password" th:field="*{password}" required/>
 	      <p id="msg" style="color:red;"></p>
 	      <input type="submit" id="login" name="login" value="Login" >
