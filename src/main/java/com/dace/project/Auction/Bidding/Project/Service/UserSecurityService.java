@@ -19,8 +19,8 @@ public class UserSecurityService implements UserDetailsService {
 
         User user = userServiceImplementation.findByUserName(username);
 
-        System.out.println(username);
-        System.out.println(user.getUsername()+" : "+user.getPassword());
+//        System.out.println(username);
+//        System.out.println(user.getUsername()+" : "+user.getPassword());
 
         if (user==null){
             throw new UsernameNotFoundException("User Not Found");

@@ -57,7 +57,7 @@ public class WebSiteController {
 
 
         model.addAttribute("myUser", new User());
-        return principal==null ? "Login" : "/";
+        return principal==null ? "LoginT" : "/";
     }
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     public String errorPage() {

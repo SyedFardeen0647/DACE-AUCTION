@@ -7,6 +7,7 @@ import com.dace.project.Auction.Bidding.Project.Repository.AuctionRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.BiddingRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,7 +25,8 @@ public class Bidding_Service_Implementation implements Bidding_Service{
     @Override
     public Auction_Bids postBid(Double bidAmount,Long id) {
         Auction_Product product = auctionRepository.findById(id).get();
-        User user = userRepository.findById(1L).get();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
         Auction_Bids auctionBids = new Auction_Bids();
         auctionBids.setAuction(product);
         auctionBids.setCustomer(user);

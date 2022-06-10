@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<!-- === Coding by CodingLab | www.codinglabweb.com === -->
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/required/jquery.min.js}"></script>
+    <script th:src="@{/js/login.js}"></script>
+
+    <!-- ===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!-- ===== CSS ===== -->
+    <link  th:href="@{/styles/stylet.css}" rel="stylesheet" />
+
+
+    <!--<title>Login & Registration Form</title>-->
+</head>
+
+<body>
+<div class="main-container">
+    <div class="form-content">
+
+
+        <div class="container">
+            <div class="forms">
+                <div class="form logint">
+                    <span class="title">Login</span>
+
+                    <form th:object="${myUser}" id="loginForm" method="post" class="login-orm" onsubmit="return false">
+                        <div class="input-field">
+                            <input type="text" placeholder="User Name" th:field="*{username}" required>
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Enter your password" th:field="*{password}" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                <input type="checkbox" id="logCheck">
+                                <label for="logCheck" class="text">Remember me</label>
+                            </div>
+
+                            <a href="#" class="text forgot-link">Forgot password?</a>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="submit" value="Login Now">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                            <span class="text">Not a member?
+                                <a href="#" class="text signup-link">Signup now</a>
+                            </span>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="container-reg ">
+            <!-- Registration Form -->
+            <div class="forms">
+                <div class="form signuptest">
+                    <span class="title">Registration</span>
+
+                    <form th:object="${myUser}" class="register-form"  id="regForm" method="post" onsubmit="return false">
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter your name" th:field="*{username}" required>
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter your email" th:field="*{email}" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="Create a password" th:field="*{password}" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Address" th:field="*{address}" required>
+                            <i class="uil uil-location-pin-alt"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Contact number" th:field="*{phoneNumber}" required>
+                            <i class="uil uil-phone-alt"></i>
+                        </div>
+
+                        <div class="input-field">
+                            <select class="form-control" id="combo" style="margin-bottom:10px;" th:field="*{question}" >
+                                <option th:value="1" >What is my last name ?</option>
+                                <option th:value="2" >What is my father name ?</option>
+                                <option th:value="3" >What is my fav color ?</option>
+                            </select>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Answer" th:field="*{answer}" required>
+                            <i class="uil uil-question-circle"></i>
+                        </div>
+
+
+
+                        <div class="input-field button">
+                            <input type="submit" value="Login Now">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                            <span class="text">Not a member?
+                                <a href="#" class="text signup-link">Signup now</a>
+                            </span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="container-forgot">
+            <div class="forms">
+                <div class="form logint">
+                    <span class="title">Forgot Password</span>
+
+                    <form class="recover-email" th:object="${myUser}" id="recoverEmail" onsubmit="return false">
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Enter your email" id="email" th:field="*{email}" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="submit" id="secure-next" value="Next">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                            <span class="text">
+                                <a href="#" class="text go-back ">Go-Back</a>
+                            </span>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="container-question">
+            <div class="forms">
+                <div class="form logint">
+                    <span class="title">Question?</span>
+
+                    <form action="#">
+
+<!--                        <div class="input-field">-->
+<!--                            <select class="form-control" id="combo" style="margin-bottom:10px;" th:field="*{question}" >-->
+<!--                                <option th:value="1" >What is my last name ?</option>-->
+<!--                                <option th:value="2" >What is my father name ?</option>-->
+<!--                                <option th:value="3" >What is my fav color ?</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+
+                        <div class="input-field">
+                            <input type="text" placeholder="Answer" required>
+                            <i class="uil uil-user"></i>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="button" class="reset-pass" value="Next">
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+        <div class="container-password">
+            <div class="forms">
+                <div class="form logint">
+                    <span class="title">New Password</span>
+
+                    <form action="#">
+
+                        <div class="input-field">
+                            <input type="password" class="password" placeholder="New Password" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+
+                        <div class="input-field button">
+                            <input type="button" class="reset" value="Reset">
+                        </div>
+                    </form>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+
+</html>

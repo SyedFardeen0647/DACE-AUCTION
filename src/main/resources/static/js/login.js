@@ -33,23 +33,43 @@ function validateLogin(){
 }
 $(document).ready(function(){
 	  /* 	sad */
-		$('.message a').click(function(){
-//	 	   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
-			 $(".register-form").slideToggle("slow");
+		$('.signup-link').click(function(){
+        //	 	   $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+        			 $(".container-reg").slideToggle("slow");
 
-			 $(".login-orm").slideToggle("slow"); 
-		});
-		$('.login-orm #forget').click(function(){
-				 $(".recover-email").slideToggle("slow");
+        			 $(".container").slideToggle("slow");
+        		});
+        		$('.forgot-link').click(function(){
+        				 $(".container-forgot").slideToggle("slow");
 
-				 $(".login-orm").slideToggle("slow"); 
-		});
-		$('.recover-email #forget').click(function(){
-			 $(".recover-email").slideToggle("slow");
+        				 $(".container").slideToggle("slow");
+        		});
+        		$('.go-back').click(function(){
+        			 $(".container-forgot").slideToggle("slow");
 
-			 $(".login-orm").slideToggle("slow"); 
-			 
-		});
+        			 $(".container").slideToggle("slow");
+
+        		});
+        		$('.secure-mail').click(function(){
+        			$(".container-question").slideToggle("slow");
+
+        			$(".container-forgot").slideToggle("slow");
+
+        	   });
+
+        	   $('.reset-pass').click(function(){
+        		$(".container-password").slideToggle("slow");
+
+        		$(".container-question").slideToggle("slow");
+
+           });
+
+        	   $('.reset').click(function(){
+        		$(".container").slideToggle("slow");
+
+        		$(".container-question").slideToggle("slow");
+
+           });
 		
 		$('.resetPass').submit(function(){
 			
@@ -137,8 +157,8 @@ $(document).ready(function(){
 						function(response){
 							if(response == "done"){
 //								resetAll();
-								 $(".register-form").slideToggle("slow");
-								 $(".login-orm").slideToggle("slow");
+								 $(".container-reg").slideToggle("slow");
+								 $(".container").slideToggle("slow");
 								$.notify("Account Created", "success");
 								resetAll();
 							}
