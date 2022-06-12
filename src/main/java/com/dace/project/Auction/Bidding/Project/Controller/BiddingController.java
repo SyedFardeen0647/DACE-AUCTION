@@ -1,7 +1,9 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
+import com.dace.project.Auction.Bidding.Project.DTO.SmsRequest;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Bids;
 import com.dace.project.Auction.Bidding.Project.Service.Bidding_Service_Implementation;
+import com.dace.project.Auction.Bidding.Project.Service.TwilioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,9 @@ public class BiddingController {
 
     @Autowired
     private Bidding_Service_Implementation biddingServiceImplementation;
+
+    @Autowired
+    private TwilioService twilioService;
 
     @PostMapping("/auction/{id}/addBid")
     @ResponseBody
@@ -38,6 +43,14 @@ public class BiddingController {
         return "Your Bid has been deleted";
 
 
+    }
+
+    @PostMapping(value = "/twilio")
+    @ResponseBody
+    public void sendSms(String phoneNumber , String message) throws IllegalAccessException {
+
+        twilioService.sendSms(phoneNumber, message);
+        System.out.println("Message send successfully" +phoneNumber+":"+message);
     }
 
 }

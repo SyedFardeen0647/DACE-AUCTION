@@ -1,19 +1,22 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
+import com.dace.project.Auction.Bidding.Project.DTO.CreateAuctionDTO;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
 import com.dace.project.Auction.Bidding.Project.Model.Category;
 import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implementation;
 import com.dace.project.Auction.Bidding.Project.Service.Category_Service_Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-@RestController
+@Controller
 public class AuctionController {
 
     @Autowired
@@ -26,22 +29,11 @@ public class AuctionController {
     //***************************************AUCTION API********************************************************
 
 
-//    @GetMapping("/createAuction")
-//    public String createAuctionPage(Model model){
-//
-//        model.addAttribute("categories",categoryServiceImplementation.getAllCategory());
-//
-//        return "CreateAuction";
-//    }
 
-//    @PostMapping(value = "/createAuction")
-//    public String createAuctionProduct(@RequestBody Auction_Product product){
-//
-//        Auction_Product auctionProduct = auctionServiceImplementation.createAuctionProduct(product);
-//
-//        return "index";
-//
-//    }
+
+
+
+
 
     @GetMapping("/auction")
     public List<Auction_Product> getAllAuctionProducts(){
@@ -51,13 +43,21 @@ public class AuctionController {
         return productList;
 
     }
-//    @GetMapping("/auction/{id}")
-//    public Auction_Product getSingleAuctionProduct(@PathVariable("id") Long id){
-//
-//        Auction_Product product = auctionServiceImplementation.getSingleAuctionProduct(id);
-//
-//        return product;
-//    }
+
+    @GetMapping("/auction/{id}")
+    public String getSingleAuctionProduct(@PathVariable("id") Long id, Model model){
+
+        Auction_Product product = auctionServiceImplementation.getSingleAuctionProduct(id);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-dd HH:mm:ss");
+        String formatDateTime = product.getAuctionEndingDate().format(formatter);
+
+        model.addAttribute("auction",product);
+        model.addAttribute("endDate",formatDateTime);
+
+
+        return "single";
+    }
 
     @DeleteMapping("/auction/{id}")
     public String deleteAuctionProduct(@PathVariable("id") Long id){
@@ -77,16 +77,7 @@ public class AuctionController {
     }
 
 
-    @GetMapping("/category/{id}")
-    public List<Auction_Product> findByCategory(@PathVariable("id") Long id){
 
-        Category category = categoryServiceImplementation.getSingleCategory(id);
-
-        List<Auction_Product> auctionProductList = auctionServiceImplementation.findByCategory(id);
-
-        return auctionProductList;
-
-    }
 
 
     //***************************************CATEGORY API********************************************************
@@ -101,13 +92,16 @@ public class AuctionController {
 
     }
 
-//    @GetMapping("/category/{id}")
-//    public Category getSingleCategory(@PathVariable("id") Long id){
-//        Category category = categoryServiceImplementation.getSingleCategory(id);
-//
-//        return category;
-//    }
-//
+    @GetMapping("/category/{id}")
+    public List<Auction_Product> findByCategory(@PathVariable("id") Long id){
+
+        Category category = categoryServiceImplementation.getSingleCategory(id);
+
+        List<Auction_Product> auctionProductList = auctionServiceImplementation.findByCategory(id);
+
+        return auctionProductList;
+
+    }
 
     @GetMapping("/category")
     public List<Category> getAllCategory(){

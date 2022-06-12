@@ -31,6 +31,7 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
+                .antMatchers("/createAuction").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -61,6 +62,8 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/signUp")
                 .antMatchers("/checkEmail")
                 .antMatchers("/resetPassword")
+                .antMatchers("/twilio")
                 .antMatchers("/topic/**","/user/**");
+
     }
 }

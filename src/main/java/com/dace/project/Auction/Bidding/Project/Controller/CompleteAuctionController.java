@@ -67,4 +67,6 @@ public class CompleteAuctionController {
     public List<CompleteAuction> completeAuctionList(){
         return completeAuctionImplementation.completeAuctionList();
     }
+
+
 }

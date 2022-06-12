@@ -1,6 +1,8 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
+import com.dace.project.Auction.Bidding.Project.DTO.SmsRequest;
 import com.dace.project.Auction.Bidding.Project.Model.User;
+import com.dace.project.Auction.Bidding.Project.Service.TwilioService;
 import com.dace.project.Auction.Bidding.Project.Service.User_Service_Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,9 @@ import java.util.List;
 public class UserController {
     @Autowired
     private User_Service_Implementation userServiceImplementation;
+
+    @Autowired
+    private TwilioService twilioService;
 
     //***************************************************USER API************************************************
 
@@ -38,4 +43,12 @@ public class UserController {
     public User getSingleUser(@PathVariable("id") Long id){
         return userServiceImplementation.getSingleUser(id);
     }
+
+
+//    @PostMapping(value = "/twilio")
+//    public void sendSms(@RequestBody SmsRequest smsRequest) throws IllegalAccessException {
+//
+//        twilioService.sendSms(smsRequest);
+//        System.out.println("Message send successfully");
+//    }
 }

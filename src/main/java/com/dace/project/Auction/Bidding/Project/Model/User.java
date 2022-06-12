@@ -28,11 +28,13 @@ public class User {
 
     private Integer active = 1;
 
+    private String role;
+
     public User() {
     }
 
 
-    public User(Long userId, String username, String password, String email, String phoneNumber, String address, Integer question, String answer, Integer active) {
+    public User(Long userId, String username, String password, String email, String phoneNumber, String address, Integer question, String answer, Integer active, String role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -42,6 +44,7 @@ public class User {
         this.question = question;
         this.answer = answer;
         this.active = active;
+        this.role = role;
     }
 
     public Long getUserId() {
@@ -114,6 +117,14 @@ public class User {
 
     public void setActive(Integer active) {
         this.active = active;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

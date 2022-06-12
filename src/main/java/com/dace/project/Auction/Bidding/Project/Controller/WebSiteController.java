@@ -1,13 +1,11 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
 import com.dace.project.Auction.Bidding.Project.DTO.CreateAuctionDTO;
+import com.dace.project.Auction.Bidding.Project.DTO.SmsRequest;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
 import com.dace.project.Auction.Bidding.Project.Model.User;
 import com.dace.project.Auction.Bidding.Project.Repository.UserRepository;
-import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implementation;
-import com.dace.project.Auction.Bidding.Project.Service.Category_Service_Implementation;
-import com.dace.project.Auction.Bidding.Project.Service.CompleteAuctionImplementation;
-import com.dace.project.Auction.Bidding.Project.Service.User_Service_Implementation;
+import com.dace.project.Auction.Bidding.Project.Service.*;
 import com.dace.project.Auction.Bidding.Project.Utlities.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -36,17 +34,10 @@ public class WebSiteController {
     @Autowired
     private User_Service_Implementation userServiceImplementation;
 
-    @GetMapping("/")
-    public String testingHtml(Model model){
+    @Autowired
+    private TwilioService twilioService;
 
 
-        model.addAttribute("allCategory",categoryServiceImplementation.getAllCategory());
-        model.addAttribute("allAuction",auctionServiceImplementation.findAuctionByActive(1));
-        model.addAttribute("winners",completeAuctionImplementation.completeAuctionList());
-
-
-        return "index";
-    }
 
     @RequestMapping("/login")
     public String index(Model model, Principal principal, @CookieValue(name = "emailTry", required = false) String count ) {
@@ -59,10 +50,16 @@ public class WebSiteController {
         model.addAttribute("myUser", new User());
         return principal==null ? "LoginT" : "/";
     }
+
+
+
     @ExceptionHandler(ChangeSetPersister.NotFoundException.class)
     public String errorPage() {
         return "Index";
     }
+
+
+
     @RequestMapping("/secret/index")
     @ResponseBody
     public String textIndex(Model model) {
@@ -71,6 +68,8 @@ public class WebSiteController {
 
         return "index";
     }
+
+
 
     @RequestMapping(value = "/signUp", method = RequestMethod.POST)
     @ResponseBody
@@ -84,6 +83,7 @@ public class WebSiteController {
             return "Username Taken";
 
         else {
+
             User userCreated=userServiceImplementation.saveUser(user);
             return userCreated!=null ? "done" : "Something went wrong";
         }
@@ -92,20 +92,21 @@ public class WebSiteController {
 
     }
 
-    @GetMapping("/auction/{id}")
-    public String getSingleAuctionProduct(@PathVariable("id") Long id, Model model){
-
-        Auction_Product product = auctionServiceImplementation.getSingleAuctionProduct(id);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-dd HH:mm:ss");
-        String formatDateTime = product.getAuctionEndingDate().format(formatter);
-
-        model.addAttribute("auction",product);
-        model.addAttribute("endDate",formatDateTime);
 
 
-        return "single";
+
+    @GetMapping("/")
+    public String testingHtml(Model model){
+
+
+        model.addAttribute("allCategory",categoryServiceImplementation.getAllCategory());
+        model.addAttribute("allAuction",auctionServiceImplementation.findAuctionByActive(1));
+        model.addAttribute("winners",completeAuctionImplementation.completeAuctionList());
+
+
+        return "index";
     }
+
 
     @GetMapping("/createAuction")
     public String createAuctionPage(Model model){
@@ -122,13 +123,23 @@ public class WebSiteController {
 
         Auction_Product auctionProduct = auctionServiceImplementation.createAuctionProduct(product,multipartFile);
 
-//        System.out.println(DateUtil.getDate(String.valueOf(product.getAuctionEndingDate())));
 
 
 
         return "Auction Posted Successfully";
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

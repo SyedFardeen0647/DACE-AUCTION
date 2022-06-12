@@ -9,6 +9,7 @@ import com.dace.project.Auction.Bidding.Project.Repository.CategoryRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.UserRepository;
 import com.dace.project.Auction.Bidding.Project.Utlities.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,8 +39,8 @@ public class Auction_Service_implementation implements Auction_Service {
 
         Auction_Product auctionProduct = new Auction_Product();
         Category category = categoryRepository.findById(product.getCategory()).get();
-        Long id = Long.valueOf(1);
-        User user = userRepository.findById(id).get();
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 

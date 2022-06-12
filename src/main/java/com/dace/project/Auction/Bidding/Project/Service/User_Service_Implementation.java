@@ -24,6 +24,9 @@ public class User_Service_Implementation implements User_Service{
         user1.setQuestion(user.getQuestion());
         user1.setAnswer(user.getAnswer());
         user1.setActive(user.getActive());
+        user1.setRole("ROLE_USER");
+
+
         return userRepository.save(user1);
     }
 

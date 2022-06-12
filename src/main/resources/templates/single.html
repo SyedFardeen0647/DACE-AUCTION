@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
   <title>Single Product</title>
   <script th:src="@{../js/jquery-2.2.3.js}"></script>
@@ -49,6 +50,13 @@ $(document).ready(function(){
    });
 
 
+   $('#msg').click(function(){
+
+      console.log("Twilio Working")
+
+   });
+
+
    refreshData();
 
 
@@ -87,8 +95,25 @@ function awardBid(id){
 
 	  	}
 	);
+}
+
+function message(number){
+
+    $.post("/twilio",
+    {
+
+       phoneNumber:"+"+number,
+       message:"Message testing"
+
+    },
+    function(a){
+
+	  	}
+    );
 
 }
+
+
 
 </script>
 
@@ -253,7 +278,7 @@ var x = setInterval(function() {
           <th scope="col">Username</th>
           <th scope="col">Bid Date</th>
           <th scope="col">Bid Amount</th>
-          <th scope="col">Action</th>
+          <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Action</th>
         </tr>
         </thead>
         <tbody class="bids">
