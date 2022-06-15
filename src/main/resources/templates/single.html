@@ -24,7 +24,8 @@
 $(document).ready(function(){
 
    $('#bidBtn').click(function(){
-
+console.log($('#bidPrice').val());
+   if(($('#bidPrice').val()) >= [[${auction.auctionStartingPrice}]]){
       $.post("/auction/[[${auction.auctionId}]]/addBid",
               {
               bidPrice:$('#bidPrice').val()
@@ -35,24 +36,22 @@ $(document).ready(function(){
      		  		var data=a;
 
 
-     		  		if(data[0]=="error")
-     		  			$.notify(data[1]);
+     		  		if(data=="error")
+     		  			$.notify(data);
      		  		else{
-
      		  		     refreshData();
-
+     		  		     $.notify(data, "success");
      		  		}
 
-    		  	}
+    		  }
 
       );
 
-   });
+   }
 
-
-   $('#msg').click(function(){
-
-      console.log("Twilio Working")
+   else{
+   $.notify("Your Bid Should be higher than the price","error");
+   }
 
    });
 
@@ -80,6 +79,7 @@ function delBid(id){
 	  	},
 	  	function(a){
 	  		refreshData();
+	  		$.notify(a,"info");
 
 	  	}
 	);
@@ -295,10 +295,10 @@ var x = setInterval(function() {
       <div class="row benefit_row">
         <div class="col-lg-3 benefit_col">
           <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+            <div class="benefit_icon"><i class="fa fa-sign-in" aria-hidden="true"></i></div>
             <div class="benefit_content">
-              <h6>free shipping</h6>
-              <p>Suffered Alteration in Some Form</p>
+              <h6>Step 1: Sign up & Start auction</h6>
+              <p>Registration is free, secure and simple.</p>
             </div>
           </div>
         </div>
@@ -306,17 +306,17 @@ var x = setInterval(function() {
           <div class="benefit_item d-flex flex-row align-items-center">
             <div class="benefit_icon"><i class="fa fa-money" aria-hidden="true"></i></div>
             <div class="benefit_content">
-              <h6>cach on delivery</h6>
-              <p>The Internet Tend To Repeat</p>
+              <h6>Step 2: Make Auction & sell</h6>
+              <p>Fastest Buying & Selling</p>
             </div>
           </div>
         </div>
         <div class="col-lg-3 benefit_col">
           <div class="benefit_item d-flex flex-row align-items-center">
-            <div class="benefit_icon"><i class="fa fa-undo" aria-hidden="true"></i></div>
+            <div class="benefit_icon"><i class="fa fa-arrow-up" aria-hidden="true"></i></div>
             <div class="benefit_content">
-              <h6>45 days return</h6>
-              <p>Making it Look Like Readable</p>
+              <h6>Step 3: Top 1 bidder won </h6>
+              <p>Highest bidder won the product</p>
             </div>
           </div>
         </div>
@@ -324,8 +324,8 @@ var x = setInterval(function() {
           <div class="benefit_item d-flex flex-row align-items-center">
             <div class="benefit_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
             <div class="benefit_content">
-              <h6>opening all week</h6>
-              <p>8AM - 09PM</p>
+              <h6>Step 4: Auction for specific time</h6>
+              <p>Auction will expire. Grab soon</p>
             </div>
           </div>
         </div>
@@ -365,11 +365,13 @@ var x = setInterval(function() {
 <script th:src="@{/plugins/easing/easing.}"></script>
 <script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
 <script th:src="@{/js/single_custom.js}"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-<script src="../required/notify.min.js"></script>
-<script src="../js/jquery-2.2.3.js"></script>
-<script src="../js/modernizr.custom.js"></script>
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
+<script th:src="@{/js/jquery-2.2.3.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/required/notify.min.js}"></script>
+<script th:src="@{/js/modernizr.custom.js}"></script>
+
 </body>
 
 </html>

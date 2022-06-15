@@ -23,17 +23,26 @@ public class Bidding_Service_Implementation implements Bidding_Service{
     private UserRepository userRepository;
 
     @Override
-    public Auction_Bids postBid(Double bidAmount,Long id) {
+    public String postBid(Double bidAmount,Long id) {
         Auction_Product product = auctionRepository.findById(id).get();
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
-        Auction_Bids auctionBids = new Auction_Bids();
-        auctionBids.setAuction(product);
-        auctionBids.setCustomer(user);
-        auctionBids.setBidPrice(bidAmount);
-        auctionBids.setBidOn(LocalDateTime.now());
 
-        return biddingRepository.save(auctionBids);
+
+        if(product!=null && user.getUserId() != product.getAuctionBy().getUserId()) {
+
+            Auction_Bids auctionBids = new Auction_Bids();
+            auctionBids.setAuction(product);
+            auctionBids.setCustomer(user);
+            auctionBids.setBidPrice(bidAmount);
+            auctionBids.setBidOn(LocalDateTime.now());
+
+            biddingRepository.save(auctionBids);
+
+            return "Your Bid Has Posted Successfully";
+        }
+
+        return "error,Given parameter are not valid";
     }
 
     @Override

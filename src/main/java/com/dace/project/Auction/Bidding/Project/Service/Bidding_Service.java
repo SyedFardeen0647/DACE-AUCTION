@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface Bidding_Service {
 
-    public Auction_Bids postBid(Double bidAmount,Long id);
+    public String postBid(Double bidAmount,Long id);
 
     public Auction_Bids getSingleBid(Long id);
 

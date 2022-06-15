@@ -189,7 +189,7 @@ jQuery(document).ready(function($)
 
 	    	// comment lines below
 	    	var date = new Date();
-	    	date.setDate(date.getDate() + 3);
+	    	date.setDate(date.getDate() + 9);
 	    	var target_date = date.getTime();
 	    	//----------------------------------------
 	 

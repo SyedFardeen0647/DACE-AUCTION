@@ -21,7 +21,8 @@ public class BiddingController {
 
     @PostMapping("/auction/{id}/addBid")
     @ResponseBody
-    public Auction_Bids postBid(Double bidPrice, @PathVariable("id") Long id){
+    public String postBid(Double bidPrice, @PathVariable("id") Long id){
+        System.out.println(biddingServiceImplementation.postBid(bidPrice, id));
         return biddingServiceImplementation.postBid(bidPrice,id);
     }
 
