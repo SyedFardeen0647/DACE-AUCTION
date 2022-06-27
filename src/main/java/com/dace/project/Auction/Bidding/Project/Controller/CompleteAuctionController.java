@@ -68,5 +68,17 @@ public class CompleteAuctionController {
         return completeAuctionImplementation.completeAuctionList();
     }
 
+    @GetMapping("/admin/allCompleteAuction")
+    public List<CompleteAuction> adminCompleteAuction(){
+        return completeAuctionImplementation.adminAllCompleteAuction();
+    }
+
+    @GetMapping("/admin/allCompleteAuction/count")
+    public Long adminCompleteAuctionCount(){
+        return completeAuctionImplementation.completeAuctionCount();
+    }
+
+
+
 
 }

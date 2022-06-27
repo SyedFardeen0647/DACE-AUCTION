@@ -45,10 +45,9 @@ public class UserController {
     }
 
 
-//    @PostMapping(value = "/twilio")
-//    public void sendSms(@RequestBody SmsRequest smsRequest) throws IllegalAccessException {
-//
-//        twilioService.sendSms(smsRequest);
-//        System.out.println("Message send successfully");
-//    }
+    @GetMapping("/users/count")
+    public Long getUsersCount(){
+        return userServiceImplementation.usersCount();
+    }
+
 }

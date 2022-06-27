@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Focus Admin: Creative Admin Dashboard</title>
+    <!-- ================= Favicon ================== -->
+    <!-- Standard -->
+    <link rel="shortcut icon" th:href="@{http://placehold.it/64.png/000/fff}">
+    <!-- Retina iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="144x144" th:href="@{http://placehold.it/144.png/000/fff}">
+    <!-- Retina iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="114x114" th:href="@{http://placehold.it/114.png/000/fff}">
+    <!-- Standard iPad Touch Icon-->
+    <link rel="apple-touch-icon" sizes="72x72" th:href="@{http://placehold.it/72.png/000/fff}">
+    <!-- Standard iPhone Touch Icon-->
+    <link rel="apple-touch-icon" sizes="57x57" th:href="@{http://placehold.it/57.png/000/fff}">
+    <!-- Styles -->
+    <link th:href="@{assets/css/lib/calendar2/pignose.calendar.min.css}" rel="stylesheet">
+    <link th:href="@{assets/css/lib/chartist/chartist.min.css}" rel="stylesheet">
+    <link th:href="@{assets/css/lib/font-awesome.min.css}" rel="stylesheet">
+    <link th:href="@{assets/css/lib/themify-icons.css}" rel="stylesheet">
+    <link th:href="@{assets/css/lib/owl.carousel.min.css}" rel="stylesheet" />
+    <link th:href="@{assets/css/lib/owl.theme.default.min.css}" rel="stylesheet" />
+    <link th:href="@{assets/css/lib/weather-icons.css}" rel="stylesheet" />
+    <link th:href="@{assets/css/lib/menubar/sidebar.css}" rel="stylesheet">
+    <link th:href="@{assets/css/lib/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{assets/css/lib/helper.css}" rel="stylesheet">
+    <link th:href="@{assets/css/style.css}" rel="stylesheet">
+</head>
+
+<script>
+$(document).ready(function(){
+
+<!--	->
+
+	var today = new Date();
+	var dd = today.getDate();
+
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	if(dd<10)
+	{
+	    dd='0'+dd;
+	}
+
+	if(mm<10)
+	{
+	    mm='0'+mm;
+	}
+	dd=dd+1;
+	today = yyyy+'-'+mm+'-'+dd;
+	document.getElementById("setDate").min=today;
+});
+
+</script>
+
+
+
+
+
+<body>
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+    <div class="nano">
+        <div class="nano-content">
+            <ul>
+                <div class="logo"><a href="/admin">
+                    <!-- <img src="assets/images/logo.png" alt="" /> --><span>ADMIN</span>
+                </a></div>
+
+
+                <li class="label">Main</li>
+
+                <li><a href="/admin"><i class="ti-calendar"></i> Dashboard </a></li>
+                <li><a href="/usersAdmin"><i class="ti-calendar"></i> Users </a></li>
+                <li><a href="/categoryAdmin"><i class="ti-email"></i> Category</a></li>
+                <li><a href="/auctionAdmin"><i class="ti-user"></i> Auction</a></li>
+                <li><a href="/completeAdmin"><i class="ti-layout-grid2-alt"></i> Complete Auction</a></li>
+
+
+
+            </ul>
+        </div>
+
+    </div>
+</div>
+    <!-- /# sidebar -->
+
+    <div class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="float-left">
+                        <div class="hamburger sidebar-toggle">
+                            <span class="line"></span>
+                            <span class="line"></span>
+                            <span class="line"></span>
+                        </div>
+                    </div>
+                    <div class="float-right">
+
+                        <div class="dropdown dib">
+                            <div class="header-icon" data-toggle="dropdown">
+                                <span class="user-avatar">John
+                                    <i class="ti-angle-down f-s-10"></i>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="content-wrap">
+        <div class="main">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8 p-r-0 title-margin-right">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <h1>Hello, <span>Welcome Here</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                    <div class="col-lg-4 p-l-0 title-margin-left">
+                        <div class="page-header">
+                            <div class="page-title">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                                    <li class="breadcrumb-item active">Table-Basic</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /# column -->
+                </div>
+                <!-- /# row -->
+                <section id="main-content">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="form-validation">
+                                        <form class="form-valide" action="/createAuction" method="post" enctype="multipart/form-data">
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-username">Product Name
+                                                    <span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control" id="val-username"
+                                                           name="title" placeholder="Enter a product name" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-email">Starting Price
+                                                    <span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <input type="number" class="form-control" id="val-email"
+                                                           name="startingPrice" placeholder="Enter a starting amount" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" >Ending Date
+                                                    <span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <input type="date" name="endingDate" class="form-control" id="setDate"
+                                                            required>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label" for="val-select2">Select Category
+                                                    <span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <select class="js-select2 form-control" id="val-select2"
+                                                            name="category" style="width: 100%;"
+                                                            data-placeholder="Choose one..">
+                                                        <option th:each="category : ${categories}"
+                                                                th:value="${category.categoryId}"
+                                                                th:utext="${category.categoryName}"/>
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label"
+                                                       for="val-confirm-password">Product Description <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <input type="text" class="form-control"
+                                                           id="val-confirm-password" name="description"
+                                                           placeholder="Enter a description" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label"
+                                                       for="val-confirm-password">Product Image <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <input type="file" class="form-control" id="file"
+                                                           name="images"  accept="image/x-png,image/jpeg,image/jpg" multiple required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-lg-8 ml-auto">
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-title">
+                                    <h4>Table Hover </h4>
+
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover ">
+                                            <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Product Name</th>
+                                                <th>Category</th>
+                                                <th>Update</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="auction : ${auctionList}">
+                                                <th scope="row" th:text="${auction.auctionId}"></th>
+                                                <td th:text="${auction.auctionTitle}"></td>
+                                                <td><span class="badge badge-success" th:text="${auction.auctionCategory.categoryName}"></span></td>
+                                                <td class="color-primary"><button
+                                                        class="btn btn-primary" >Update</button></td>
+                                                <td class="color-primary"><button
+                                                        class="btn btn-danger">Delete</button></td>
+
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /# card -->
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+
+                        <!-- /# column -->
+                    </div>
+                    <!-- /# row -->
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="footer">
+                                <p>2018 © Admin Board. - <a href="#">example.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- jquery vendor -->
+    <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
+    <!-- nano scroller -->
+    <script src="assets/js/lib/menubar/sidebar.js"></script>
+    <script src="assets/js/lib/preloader/pace.min.js"></script>
+    <!-- sidebar -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/lib/bootstrap.min.js"></script>
+    <script src="assets/js/scripts.js"></script>
+    <!-- scripit init-->
+
+
+
+
+
+</body>
+
+</html>

@@ -1,13 +1,14 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
+import com.dace.project.Auction.Bidding.Project.DTO.BannerDTO;
 import com.dace.project.Auction.Bidding.Project.Model.HighlightBanner;
 import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implementation;
 import com.dace.project.Auction.Bidding.Project.Service.HighLightBannerImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class BannerController {
@@ -20,19 +21,23 @@ public class BannerController {
 
 
 
-    public String create(Model model){
-
-        model.addAttribute("auctionList",auctionServiceImplementation.getAllAuctionProduct());
-
-
-        return null;
-    }
+//    @GetMapping("/banner")
+//    public String create(Model model){
+//
+//        model.addAttribute("auctionList",auctionServiceImplementation.getAllAuctionProduct());
+//
+//
+//        return null;
+//    }
 
 
     @PostMapping("/postBanner")
-    public HighlightBanner save(HighlightBanner highlightBanner){
+    @ResponseBody
+    public String save(BannerDTO bannerDTO ,@RequestPart("image") MultipartFile multipartFile){
 
-        return highLightBannerImplementation.saveHighlightBanner(highlightBanner);
+        highLightBannerImplementation.saveHighlightBanner(bannerDTO,multipartFile);
+
+        return "Success";
 
     }
 }

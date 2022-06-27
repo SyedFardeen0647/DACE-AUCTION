@@ -22,4 +22,16 @@ public class CompleteAuctionImplementation implements CompleteAuctionService{
     public List<CompleteAuction> completeAuctionList() {
         return auctionRepository.findAll();
     }
+
+    @Override
+    public List<CompleteAuction> adminAllCompleteAuction() {
+        return auctionRepository.findAll();
+    }
+
+    @Override
+    public Long completeAuctionCount() {
+        return auctionRepository.count();
+    }
+
+
 }

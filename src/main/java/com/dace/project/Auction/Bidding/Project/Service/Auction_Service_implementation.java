@@ -118,5 +118,10 @@ public class Auction_Service_implementation implements Auction_Service {
         return auctionRepository.findByAuctionCategoryId(id);
     }
 
+    @Override
+    public Long allAuctionCount() {
+        return auctionRepository.count();
+    }
+
 
 }

@@ -6,10 +6,12 @@ import com.dace.project.Auction.Bidding.Project.Model.User;
 import com.dace.project.Auction.Bidding.Project.Repository.AuctionRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.BiddingRepository;
 import com.dace.project.Auction.Bidding.Project.Repository.UserRepository;
+import com.dace.project.Auction.Bidding.Project.Utlities.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 @Service
@@ -36,6 +38,7 @@ public class Bidding_Service_Implementation implements Bidding_Service{
             auctionBids.setCustomer(user);
             auctionBids.setBidPrice(bidAmount);
             auctionBids.setBidOn(LocalDateTime.now());
+
 
             biddingRepository.save(auctionBids);
 

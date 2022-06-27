@@ -10,7 +10,10 @@ public class HighlightBanner {
 
     private String bannerDescription;
 
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
     private String images;
+
 
     @ManyToOne
     private Auction_Product auctionProduct;
@@ -56,6 +59,8 @@ public class HighlightBanner {
     public void setAuctionProduct(Auction_Product auctionProduct) {
         this.auctionProduct = auctionProduct;
     }
+
+
 
     @Override
     public String toString() {

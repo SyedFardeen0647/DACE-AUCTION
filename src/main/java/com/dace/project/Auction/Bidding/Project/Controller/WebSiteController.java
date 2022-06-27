@@ -3,6 +3,7 @@ package com.dace.project.Auction.Bidding.Project.Controller;
 import com.dace.project.Auction.Bidding.Project.DTO.CreateAuctionDTO;
 import com.dace.project.Auction.Bidding.Project.DTO.SmsRequest;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
+import com.dace.project.Auction.Bidding.Project.Model.HighlightBanner;
 import com.dace.project.Auction.Bidding.Project.Model.User;
 import com.dace.project.Auction.Bidding.Project.Repository.UserRepository;
 import com.dace.project.Auction.Bidding.Project.Service.*;
@@ -36,6 +37,10 @@ public class WebSiteController {
 
     @Autowired
     private TwilioService twilioService;
+
+
+    @Autowired
+    private HighLightBannerImplementation highLightBannerImplementation;
 
 
 
@@ -99,6 +104,7 @@ public class WebSiteController {
     public String testingHtml(Model model){
 
 
+        model.addAttribute("banner",highLightBannerImplementation.getBanner());
         model.addAttribute("allCategory",categoryServiceImplementation.getAllCategory());
         model.addAttribute("allAuction",auctionServiceImplementation.findAuctionByActive(1));
         model.addAttribute("winners",completeAuctionImplementation.completeAuctionList());
@@ -108,12 +114,13 @@ public class WebSiteController {
     }
 
 
-    @GetMapping("/createAuction")
+    @GetMapping("/auctionAdmin")
     public String createAuctionPage(Model model){
 
         model.addAttribute("categories",categoryServiceImplementation.getAllCategory());
+        model.addAttribute("auctionList",auctionServiceImplementation.getAllAuctionProduct());
 
-        return "CreateAuction";
+        return "auction-admin";
     }
 
     @PostMapping("/createAuction")
@@ -129,6 +136,8 @@ public class WebSiteController {
         return "Auction Posted Successfully";
 
     }
+
+
 
 
 

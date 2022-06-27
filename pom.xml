@@ -121,6 +121,8 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<finalName>spring-boot-auction</finalName>
 	</build>
 
 </project>

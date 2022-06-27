@@ -59,12 +59,12 @@ public class AuctionController {
         return "single";
     }
 
-    @DeleteMapping("/auction/{id}")
+    @GetMapping("/auction/{id}/delete")
     public String deleteAuctionProduct(@PathVariable("id") Long id){
 
         auctionServiceImplementation.deleteAuctionProduct(id);
 
-        return "Auction Deleted Successfully";
+        return "Product Deleted Successfully";
 
     }
 
@@ -74,6 +74,11 @@ public class AuctionController {
         Auction_Product auctionProduct = auctionServiceImplementation.updateAuctionProduct(product,id);
 
         return auctionProduct;
+    }
+
+    @GetMapping("/admin/auction/count")
+    public Long auctionCount(){
+        return auctionServiceImplementation.allAuctionCount();
     }
 
 
@@ -129,6 +134,11 @@ public class AuctionController {
     public String testApi(@RequestParam("file") MultipartFile file){
         String imageFileName = StringUtils.cleanPath(file.getOriginalFilename());
         return imageFileName;
+    }
+
+    @GetMapping("/admin/category/count")
+    public Long categoryCount(){
+        return categoryServiceImplementation.categoryCount();
     }
 
 

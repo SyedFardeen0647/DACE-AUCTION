@@ -68,7 +68,7 @@
                                 <li><a href="#products">products</a></li>
                                 <li><a href="#winners">winners</a></li>
                                 <li><a href="contact.html">contact</a></li>
-                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/createAuction">admin</a></li>
+                                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">admin</a></li>
 
                             </ul>
                             <ul class="navbar_user">
@@ -141,12 +141,12 @@
 
     <section class="section home reveal">
 
-    <div id="home" class="main_slider" style="background-image:url(images/My\ project\ \(1\).png)">
+    <div id="home" class="main_slider" th:each="banner : ${banner}" th:style=" 'background-image:url(' + @{data:image/jpeg;base64,{source}(source=${banner.images})} + ');' ">
 
         <div class="main_slider_content">
-            <h6>Mobile phone /Brand New Iphone XR</h6>
-            <h1>Get up to 50% Off Price Auction</h1>
-            <div class="red_button shop_now_button"><a href="#">Add your bid</a></div>
+            <h6 th:text="${banner.auctionProduct.auctionTitle}"></h6>
+            <h1 th:text="${banner.bannerDescription}"></h1>
+            <div class="red_button shop_now_button"><a th:href="@{'/auction/' + ${banner.auctionProduct.auctionId}}">Add your bid</a></div>
         </div>
     </div>
 

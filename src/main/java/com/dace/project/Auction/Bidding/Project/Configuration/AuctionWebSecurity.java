@@ -59,10 +59,15 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/styles/**")
                 .antMatchers("/plugins/**")
                 .antMatchers("/images/**")
+                .antMatchers("/assets/**")
                 .antMatchers("/signUp")
+                .antMatchers("/postBanner")
+                .antMatchers("/admin/users")
                 .antMatchers("/checkEmail")
                 .antMatchers("/resetPassword")
                 .antMatchers("/twilio")
+                .antMatchers("/admin/**")
+                .antMatchers("/users/**")
                 .antMatchers("/topic/**","/user/**");
 
     }

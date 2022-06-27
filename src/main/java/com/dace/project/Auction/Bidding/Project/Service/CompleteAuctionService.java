@@ -9,4 +9,9 @@ public interface CompleteAuctionService {
     public CompleteAuction saveCompleteAuction(CompleteAuction completeAuction);
 
     public List<CompleteAuction> completeAuctionList();
+
+    public List<CompleteAuction>  adminAllCompleteAuction();
+
+    public Long completeAuctionCount();
+
 }

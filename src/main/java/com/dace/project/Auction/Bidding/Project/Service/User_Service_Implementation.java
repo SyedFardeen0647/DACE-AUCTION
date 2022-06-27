@@ -78,4 +78,11 @@ public class User_Service_Implementation implements User_Service{
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }
+
+    @Override
+    public Long usersCount() {
+        return userRepository.count();
+    }
+
+
 }

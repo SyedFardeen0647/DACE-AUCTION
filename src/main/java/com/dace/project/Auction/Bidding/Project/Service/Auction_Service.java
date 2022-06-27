@@ -24,4 +24,8 @@ public interface Auction_Service {
     public List<Auction_Product> findAuctionByActive(int active);
 
     List<Auction_Product> findByCategory(Long id);
+
+    public Long allAuctionCount();
+
+
 }
