@@ -100,5 +100,19 @@ public class Bidding_Service_Implementation implements Bidding_Service{
     @Override
     public void deleteBid(Long id) {
         biddingRepository.deleteById(id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

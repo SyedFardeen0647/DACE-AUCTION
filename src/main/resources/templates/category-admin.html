@@ -9,6 +9,7 @@
     <title>Focus Admin: Creative Admin Dashboard</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
+    <script th:src="@{../js/jquery-2.2.3.js}"></script>
     <link rel="shortcut icon" th:href="@{http://placehold.it/64.png/000/fff}">
     <!-- Retina iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="144x144" th:href="@{http://placehold.it/144.png/000/fff}">
@@ -19,6 +20,7 @@
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" th:href="@{http://placehold.it/57.png/000/fff}">
     <!-- Styles -->
+    <link rel="stylesheet" type="text/css" th:href="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.css}">
     <link th:href="@{assets/css/lib/font-awesome.min.css}" rel="stylesheet">
     <link th:href="@{assets/css/lib/themify-icons.css}" rel="stylesheet">
     <link th:href="@{assets/css/lib/jsgrid/jsgrid-theme.min.css}" rel="stylesheet" />
@@ -28,6 +30,68 @@
     <link th:href="@{assets/css/lib/helper.css}" rel="stylesheet">
     <link th:href="@{assets/css/style.css}" rel="stylesheet">
 </head>
+
+<script th:inline="javascript">
+
+
+
+
+
+
+function catCreate(){
+
+     $.post("/createCategory",
+     {
+
+         categoryName:$('#catName').val()
+
+     },
+     function(a){
+
+
+     $.notify(a,"info");
+     location.reload();
+
+
+     }
+     );
+
+}
+
+
+
+
+
+function deleteCat(id){
+
+     $.get("/category/delete/"+id,
+     {
+
+
+
+     },
+     function(a){
+
+
+     $.notify(a,"info");
+     location.reload();
+
+
+     }
+     );
+
+}
+
+
+
+
+
+</script>
+
+
+
+
+
 <body>
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
     <div class="nano">
@@ -118,22 +182,22 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="form-validation">
-                                    <form class="form-valide" action="#" method="post">
+
                                         <div class="form-group row">
-                                            <label class="col-lg-4 col-form-label" for="val-username">Category
+                                            <label class="col-lg-4 col-form-label" >Category
                                                 Name<span class="text-danger">*</span></label>
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" id="val-username"
-                                                       name="val-username" placeholder="Enter a category" required>
+                                                <input type="text" class="form-control" id="catName"
+                                                       name="categoryName" placeholder="Enter a category" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-lg-8 ml-auto">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button  id="catBtn" th:onclick=" 'catCreate()' " class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
-                                    </form>
+
                                 </div>
                             </div>
                         </div>
@@ -161,7 +225,7 @@
                                             <th scope="row" th:text="${category.categoryId}"></th>
                                             <td th:text="${category.categoryName}"></td>
                                             <td class="color-success">Active</td>
-                                            <td><button class="btn btn-danger">Remove</button></td>
+                                            <td><button th:onclick=" 'deleteCat('+${category.categoryId}+')' " class="btn btn-danger">Remove</button></td>
                                         </tr>
 
                                         </tbody>
@@ -192,8 +256,7 @@
 
 
 
-
-
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <!-- jquery vendor -->
     <script th:src="@{assets/js/lib/jquery.min.js}"></script>
     <script th:src="@{assets/js/lib/jquery.nanoscroller.min.js}"></script>
@@ -206,9 +269,13 @@
     <script th:src="@{assets/js/lib/bootstrap.min.js}"></script>
     <script th:src="@{assets/js/scripts.js}"></script>
     <!-- scripit init-->
-
-
-
+<script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
+<script th:src="@{/js/jquery-2.2.3.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/required/notify.min.js}"></script>
+<script th:src="@{/js/modernizr.custom.js}"></script>
 
 
 </body>

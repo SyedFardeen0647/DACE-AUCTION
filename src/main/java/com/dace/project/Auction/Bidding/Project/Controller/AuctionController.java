@@ -59,7 +59,8 @@ public class AuctionController {
         return "single";
     }
 
-    @GetMapping("/auction/{id}/delete")
+    @GetMapping("/auction/delete/{id}")
+    @ResponseBody
     public String deleteAuctionProduct(@PathVariable("id") Long id){
 
         auctionServiceImplementation.deleteAuctionProduct(id);
@@ -89,11 +90,12 @@ public class AuctionController {
 
 
     @PostMapping("/createCategory")
-    public Category createCategory(@RequestBody Category category){
+    @ResponseBody
+    public String createCategory(String categoryName){
 
-        Category category1 = categoryServiceImplementation.createCategory(category);
+        Category category1 = categoryServiceImplementation.createCategory(categoryName);
 
-        return category1;
+        return "New Category Created ";
 
     }
 
@@ -123,11 +125,12 @@ public class AuctionController {
         return category1;
     }
 
-    @DeleteMapping("/category/{id}")
+    @GetMapping("/category/delete/{id}")
+    @ResponseBody
     public String deleteCategory(@PathVariable("id") Long id){
         categoryServiceImplementation.deleteCategory(id);
 
-        return "Category Successfully Deleted";
+        return "Category Deleted successfully";
     }
 
     @PostMapping("/upload")

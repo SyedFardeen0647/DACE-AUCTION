@@ -9,6 +9,7 @@
     <title>Focus Admin: Creative Admin Dashboard</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
+    <script th:src="@{../js/jquery-2.2.3.js}"></script>
     <link rel="shortcut icon" th:href="@{http://placehold.it/64.png/000/fff}">
     <!-- Retina iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="144x144" th:href="@{http://placehold.it/144.png/000/fff}">
@@ -31,6 +32,26 @@
     <link th:href="@{assets/css/lib/helper.css}" rel="stylesheet">
     <link th:href="@{assets/css/style.css}" rel="stylesheet">
 </head>
+
+<script  th:inline="javascript">
+function completeDelete(id){
+     $.get("/completeAuction/delete/"+id,
+{
+
+
+
+},
+
+function(a){
+$.notify(a,"info");
+location.reload();
+}
+
+);
+
+}
+
+</script>
 
 <body>
 <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
@@ -149,7 +170,7 @@
                                                 <td class="color-success" th:text="${complete.winningBidPrice}"></td>
                                                 <td th:text="${complete.auctionWonBy.username}"></td>
                                                 <td th:text="${complete.auctionWonBy.phoneNumber}"></td>
-                                                <td><button class="btn btn-danger">Remove</button></td>
+                                                <td><button th:onclick="'completeDelete('+${complete.completeId}+')'" class="btn btn-danger">Remove</button></td>
                                             </tr>
 
                                             </tbody>
@@ -182,6 +203,7 @@
 
 
     <!-- jquery vendor -->
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script th:src="@{assets/js/lib/jquery.min.js}"></script>
     <script src="assets/js/lib/jquery.nanoscroller.min.js"></script>
     <!-- nano scroller -->
@@ -193,6 +215,13 @@
     <script th:src="@{assets/js/lib/bootstrap.min.js}"></script>
     <script th:src="@{assets/js/scripts.js}"></script>
     <!-- scripit init-->
+<script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
+<script th:src="@{/js/jquery-2.2.3.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/required/notify.min.js}"></script>
+<script th:src="@{/js/modernizr.custom.js}"></script>
 
 
 

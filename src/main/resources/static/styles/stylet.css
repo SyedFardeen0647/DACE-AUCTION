@@ -36,7 +36,6 @@ body {
 .container {
   position: relative;
   max-width: 430px;
-  width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -46,7 +45,6 @@ body {
 .container-reg{
   position: relative;
   max-width: 430px;
-  width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -56,7 +54,6 @@ body {
 .container-forgot{
 position: relative;
   max-width: 430px;
-  width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -66,7 +63,6 @@ position: relative;
 .container-question{
   position: relative;
   max-width: 430px;
-  width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -76,7 +72,6 @@ position: relative;
 .container-password{
     position: relative;
   max-width: 430px;
-  width: 100%;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -182,7 +177,7 @@ position: relative;
 
 .form .input-field {
   position: relative;
-  height: 50px;
+  height: 30px;
   width: 100%;
   margin-top: 30px;
 }
@@ -269,6 +264,7 @@ position: relative;
 
 .form .button {
   margin-top: 35px;
+  height:50px
 }
 
 .form .button input {

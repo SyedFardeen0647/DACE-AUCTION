@@ -271,6 +271,7 @@ var x = setInterval(function() {
   <!--Bidder Table-->
   <div class="bidder_reports">
     <div class="container">
+      <div class="table-responsive">
       <table class="table table-hover">
         <thead>
         <tr>
@@ -278,6 +279,7 @@ var x = setInterval(function() {
           <th scope="col">Username</th>
           <th scope="col">Bid Date</th>
           <th scope="col">Bid Amount</th>
+          <th scope="col">Delete</th>
           <th sec:authorize="hasRole('ROLE_ADMIN')" scope="col">Action</th>
         </tr>
         </thead>
@@ -285,6 +287,7 @@ var x = setInterval(function() {
 
         </tbody>
       </table>
+      </div>
     </div>
   </div>
 
@@ -358,6 +361,9 @@ var x = setInterval(function() {
 </div>
 
 <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+<script th:src="@{/js/jquery-2.2.3.js}"></script>
+<script th:src="@{/required/notify.min.js}"></script>
+<script th:src="@{/js/modernizr.custom.js}"></script>
 <script th:src="@{/styles/bootstrap4/popper.js}"></script>
 <script th:src="@{/styles/bootstrap4/bootstrap.min.js}"></script>
 <script th:src="@{/plugins/Isotope/isotope.pkgd.min.js}"></script>
@@ -366,11 +372,9 @@ var x = setInterval(function() {
 <script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
 <script th:src="@{/js/single_custom.js}"></script>
 <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
-<script th:src="@{/js/jquery-2.2.3.js}"></script>
 <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
 <script th:src="@{/js/bootstrap.js}"></script>
-<script th:src="@{/required/notify.min.js}"></script>
-<script th:src="@{/js/modernizr.custom.js}"></script>
+
 
 </body>
 

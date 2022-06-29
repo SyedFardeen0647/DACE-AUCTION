@@ -79,6 +79,13 @@ public class CompleteAuctionController {
     }
 
 
+    @GetMapping("/completeAuction/delete/{id}")
+    @ResponseBody
+    public String deleteCompleteAuction(@PathVariable("id") Long id){
+        completeAuctionImplementation.completeAuctionDelete(id);
+
+        return "Deleted Successfully";
+    }
 
 
 }

@@ -33,5 +33,10 @@ public class CompleteAuctionImplementation implements CompleteAuctionService{
         return auctionRepository.count();
     }
 
+    @Override
+    public void completeAuctionDelete(Long id) {
+         auctionRepository.deleteById(id);
+    }
+
 
 }

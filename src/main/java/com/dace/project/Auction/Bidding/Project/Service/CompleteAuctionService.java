@@ -14,4 +14,6 @@ public interface CompleteAuctionService {
 
     public Long completeAuctionCount();
 
+    public void completeAuctionDelete(Long id);
+
 }

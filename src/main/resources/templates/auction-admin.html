@@ -9,6 +9,7 @@
     <title>Focus Admin: Creative Admin Dashboard</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
+    <script th:src="@{../js/jquery-2.2.3.js}"></script>
     <link rel="shortcut icon" th:href="@{http://placehold.it/64.png/000/fff}">
     <!-- Retina iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="144x144" th:href="@{http://placehold.it/144.png/000/fff}">
@@ -37,6 +38,7 @@ $(document).ready(function(){
 
 <!--	->
 
+
 	var today = new Date();
 	var dd = today.getDate();
 
@@ -55,6 +57,24 @@ $(document).ready(function(){
 	today = yyyy+'-'+mm+'-'+dd;
 	document.getElementById("setDate").min=today;
 });
+
+
+
+function auctionDelete(id){
+
+$.get("/auction/delete/"+id,
+	  	{
+
+	  	},
+	  	function(a){
+	  		$.notify(a,"info");
+	  		location.reload();
+	  	}
+	);
+
+}
+
+
 
 </script>
 
@@ -152,7 +172,7 @@ $(document).ready(function(){
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-validation">
-                                        <form class="form-valide" action="/createAuction" method="post" enctype="multipart/form-data">
+                                        <form id="auctionForm" class="form-valide" action="/createAuction" method="post" enctype="multipart/form-data">
                                             <div class="form-group row">
                                                 <label class="col-lg-4 col-form-label" for="val-username">Product Name
                                                     <span class="text-danger">*</span></label>
@@ -251,7 +271,7 @@ $(document).ready(function(){
                                                 <td><span class="badge badge-success" th:text="${auction.auctionCategory.categoryName}"></span></td>
                                                 <td class="color-primary"><button
                                                         class="btn btn-primary" >Update</button></td>
-                                                <td class="color-primary"><button
+                                                <td class="color-primary"><button th:onclick="'auctionDelete('+${auction.auctionId}+')'"
                                                         class="btn btn-danger">Delete</button></td>
 
                                             </tr>
@@ -287,7 +307,7 @@ $(document).ready(function(){
 
 
 
-
+<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 
     <!-- jquery vendor -->
     <script src="assets/js/lib/jquery.min.js"></script>
@@ -301,6 +321,15 @@ $(document).ready(function(){
     <script src="assets/js/lib/bootstrap.min.js"></script>
     <script src="assets/js/scripts.js"></script>
     <!-- scripit init-->
+
+
+<script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
+<script th:src="@{/js/jquery-2.2.3.js}"></script>
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/required/notify.min.js}"></script>
+<script th:src="@{/js/modernizr.custom.js}"></script>
 
 
 

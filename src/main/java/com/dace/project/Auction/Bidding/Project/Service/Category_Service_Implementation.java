@@ -13,11 +13,11 @@ public class Category_Service_Implementation implements Category_Service{
     private CategoryRepository categoryRepository;
 
     @Override
-    public Category createCategory(Category category) {
+    public Category createCategory(String categoryName) {
 
         Category category1 = new Category();
-        category1.setCategoryName(category.getCategoryName());
-        category1.setActive(category.getActive());
+        category1.setCategoryName(categoryName);
+        category1.setActive(1);
 
         return categoryRepository.save(category1);
     }
