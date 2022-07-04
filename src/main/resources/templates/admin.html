@@ -9,6 +9,7 @@
     <title>Focus Admin: Creative Admin Dashboard</title>
     <!-- ================= Favicon ================== -->
     <!-- Standard -->
+    <script th:src="@{../js/jquery-2.2.3.js}"></script>
     <link rel="shortcut icon" th:href="@{http://placehold.it/64.png/000/fff}">
     <!-- Retina iPad Touch Icon-->
     <link rel="apple-touch-icon" sizes="144x144" th:href="@{http://placehold.it/144.png/000/fff}">
@@ -32,6 +33,26 @@
     <link th:href="@{assets/css/style.css}" rel="stylesheet">
 </head>
 
+
+<script th:inline="javascript">
+
+
+    function deleteBanner(){
+
+         $.get("/deleteBanner",{
+         },
+
+         function(a){
+         $.notify(a,"success");
+	  		location.reload();
+         }
+         );
+
+    }
+
+
+</script>
+
 <body>
 
     <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
@@ -50,6 +71,9 @@
                     <li><a href="/categoryAdmin"><i class="ti-email"></i> Category</a></li>
                     <li><a href="/auctionAdmin"><i class="ti-user"></i> Auction</a></li>
                     <li><a href="/completeAdmin"><i class="ti-layout-grid2-alt"></i> Complete Auction</a></li>
+                    <li><a href="/"><i class="ti-layout-grid2-alt"></i> Logout</a></li>
+
+
 
 
 
@@ -75,7 +99,7 @@
 
                         <div class="dropdown dib">
                             <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">John
+                                <span class="user-avatar">Fardeen
                                     <i class="ti-angle-down f-s-10"></i>
                                 </span>
 
@@ -215,6 +239,19 @@
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </div>
                                             </div>
+
+                                            <hr>
+
+                                            <div class="form-group row">
+                                                <label class="col-lg-4 col-form-label color-success">Currently 1 banner
+                                                    in Live<span class="text-danger">*</span></label>
+                                                <div class="col-lg-8">
+                                                    <button th:onclick="'deleteBanner()'" class="btn btn-danger">Remove</button>
+
+
+
+                                                </div>
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -266,6 +303,10 @@
                                                     <button type="submit" class="btn btn-primary">Publish</button>
                                                 </div>
                                             </div>
+
+
+
+
                                         </form>
                                     </div>
                                 </div>
@@ -279,7 +320,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="footer">
-                                <p>. - <a href="#">example.com</a></p>
+                                <p>. - <a href="#"></a></p>
                             </div>
                         </div>
                     </div>
@@ -289,6 +330,7 @@
     </div>
 
     <!-- jquery vendor -->
+    <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
     <script th:src="@{assets/js/lib/jquery.min.js}"></script>
     <script th:src="@{assets/js/lib/jquery.nanoscroller.min.js}"></script>
     <!-- nano scroller -->
@@ -316,6 +358,15 @@
     <script src="assets/js/lib/owl-carousel/owl.carousel-init.js"></script>
     <!-- scripit init-->
     <script src="assets/js/dashboard2.js"></script>
+
+    <script th:src="@{/plugins/jquery-ui-1.12.1.custom/jquery-ui.js}"></script>
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
+    <script th:src="@{/js/jquery-2.2.3.js}"></script>
+    <script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
+    <script th:src="@{/js/bootstrap.js}"></script>
+    <script th:src="@{/required/notify.min.js}"></script>
+    <script th:src="@{/js/modernizr.custom.js}"></script>
+
 </body>
 
 </html>

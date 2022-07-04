@@ -37,7 +37,7 @@ public class CompleteAuctionController {
 
     @PostMapping("/auction/{auctionId}/complete/{bidId}")
     @ResponseBody
-    public CompleteAuction saveCompleteAuction(@PathVariable("auctionId") Long auctionId, @PathVariable("bidId") Long bidId){
+    public String saveCompleteAuction(@PathVariable("auctionId") Long auctionId, @PathVariable("bidId") Long bidId){
 
         User user = userServiceImplementation.getSingleUser(1L);
 
@@ -55,11 +55,12 @@ public class CompleteAuctionController {
 
         auctionProduct.setActive(0);
         auctionServiceImplementation.updateAuctionProduct(auctionProduct,auctionId);
+        completeAuctionImplementation.saveCompleteAuction(winner);
 
 
 
 
-        return completeAuctionImplementation.saveCompleteAuction(winner);
+        return "Winner Selected Successfully";
 
     }
 

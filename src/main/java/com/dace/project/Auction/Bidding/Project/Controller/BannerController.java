@@ -40,4 +40,13 @@ public class BannerController {
         return "Success";
 
     }
+
+    @GetMapping("/deleteBanner")
+    @ResponseBody
+    public String deleteBanner(){
+
+        highLightBannerImplementation.deleteHighLightBanner();
+
+        return "Banner Deleted Successfully";
+    }
 }

@@ -12,5 +12,7 @@ public interface HighlightBannerService {
 
     List<HighlightBanner> getBanner();
 
-    public String deleteHighLightBanner(Long id);
+    public void deleteHighLightBanner();
+
+    Long bannerCount();
 }

@@ -12,7 +12,7 @@ public class TwilioInitiazer {
     private final static Logger LOGGER =  LoggerFactory.getLogger(TwilioInitiazer.class);
 
     private static final String ACCOUNT_SID ="ACd8d370a8fb8280201ef6387a0d2167fc";
-    private static final String AUTH_TOKEN ="f123796a4336a743ed96efb2d996ae4c";
+    private static final String AUTH_TOKEN ="09aba8e596c9e500b0c5f501bd619d07";
 
     private final TwilioConfiguration twilioConfiguration;
 

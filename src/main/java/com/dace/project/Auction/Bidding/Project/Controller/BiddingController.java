@@ -48,10 +48,12 @@ public class BiddingController {
 
     @PostMapping(value = "/twilio")
     @ResponseBody
-    public void sendSms(String phoneNumber , String message) throws IllegalAccessException {
+    public String sendSms(String phoneNumber , String message) throws IllegalAccessException {
 
         twilioService.sendSms(phoneNumber, message);
         System.out.println("Message send successfully" +phoneNumber+":"+message);
+
+        return "Message Send Successfully";
     }
 
 }

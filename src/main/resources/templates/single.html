@@ -87,14 +87,17 @@ function delBid(id){
 
 function awardBid(id){
 
-	 $.post("/auction/[[${auction.auctionId}]]/complete/"+id,
+     $.post("/auction/[[${auction.auctionId}]]/complete/"+id,
 	  	{
 
 	  	},
 	  	function(a){
+           $.notify(a,"success");
 
+           location.href="/";
 	  	}
 	);
+
 }
 
 function message(number){
@@ -102,14 +105,15 @@ function message(number){
     $.post("/twilio",
     {
 
-       phoneNumber:"+"+number,
+       phoneNumber:"+91"+number,
        message:"Message testing"
 
     },
     function(a){
-
+           $.notify(a,"success");
 	  	}
     );
+
 
 }
 
@@ -180,11 +184,12 @@ var x = setInterval(function() {
             </div>
             <nav class="navbar">
               <ul class="navbar_menu">
-                <li><a href="index.html">home</a></li>
-                <li><a href="#">products</a></li>
-                <li><a href="#">winners</a></li>
-                <li><a href="#">highlights</a></li>
-                <li><a href="contact.html">contact</a></li>
+                <li><a href="/">home</a></li>
+                <li><a href="/">products</a></li>
+                <li><a href="/">winners</a></li>
+                <li><a href="/">contact</a></li>
+                <li sec:authorize="hasRole('ROLE_ADMIN')"><a href="/admin">admin</a></li>
+
               </ul>
               <ul class="navbar_user">
                 <li><a href="#"><i class="fa fa-search" aria-hidden="true"></i></a></li>

@@ -48,7 +48,12 @@ public class HighLightBannerImplementation implements HighlightBannerService{
 
 
     @Override
-    public String deleteHighLightBanner(Long id) {
-        return null;
+    public void deleteHighLightBanner() {
+        highlightBannerRepository.deleteAll();
+    }
+
+    @Override
+    public Long bannerCount() {
+        return highlightBannerRepository.count();
     }
 }
