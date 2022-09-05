@@ -1,6 +1,28 @@
 /**
  * 
  */
+
+function visiblePassword(){
+	var password = document.getElementById("pass");
+	if(password.type === "password"){
+		password.type = "text";
+		
+	}else{
+		password.type="password";
+		
+	}
+}
+function visiblePassword2(){
+	var password = document.getElementById("pass2");
+	if(password.type === "password"){
+		password.type = "text";
+		
+	}else{
+		password.type="password";
+		
+	}
+}
+
 function resetAll(){
 	$("#cuser").val('');
 	$("#cpass").val('');
@@ -8,6 +30,8 @@ function resetAll(){
 	$("#address").val('');
 	
 }
+
+
 function validateCreate(){
 	if($("#answer").val()==""||$("#email").val()==""||$("#cuser").val()==""||$("#cpass").val()==""||$("#address").val()==""){
 		return false;

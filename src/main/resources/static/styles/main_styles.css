@@ -805,6 +805,8 @@ section
 	-o-transform: translateY(-50%);
 	transform: translateY(-50%);
 	left: 15px;
+	display: flex;
+    align-items: center;
 }
 .logo_container a
 {
@@ -812,10 +814,17 @@ section
 	color: #1e1e27;
 	font-weight: 700;
 	text-transform: uppercase;
+	margin-top: 20px;
 }
 .logo_container a span
 {
 	color: #fe4c50;
+}
+
+.logo-img{
+    height: 80px;
+    width: 80px;
+    margin-right: 10px;
 }
 
 /*********************************

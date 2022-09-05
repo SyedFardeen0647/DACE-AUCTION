@@ -816,6 +816,10 @@ section
 {
 	color: #fe4c50;
 }
+.logo-img{
+height:60px;
+width:60px
+}
 .red_button
 {
 	display: -webkit-inline-box;

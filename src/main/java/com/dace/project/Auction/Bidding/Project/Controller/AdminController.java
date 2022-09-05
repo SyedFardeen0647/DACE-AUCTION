@@ -1,10 +1,7 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
 
-import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implementation;
-import com.dace.project.Auction.Bidding.Project.Service.Category_Service_Implementation;
-import com.dace.project.Auction.Bidding.Project.Service.CompleteAuctionImplementation;
-import com.dace.project.Auction.Bidding.Project.Service.User_Service_Implementation;
+import com.dace.project.Auction.Bidding.Project.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +22,9 @@ public class AdminController {
     @Autowired
     private Category_Service_Implementation categoryServiceImplementation;
 
+    @Autowired
+    private HighLightBannerImplementation highLightBannerImplementation;
+
 
     @GetMapping("/admin")
     public String adminCRM(Model model){
@@ -34,6 +34,7 @@ public class AdminController {
         model.addAttribute("activeAuction",auctionServiceImplementation.allAuctionCount());
         model.addAttribute("completedAuction",completeAuctionImplementation.completeAuctionCount());
         model.addAttribute("categoryCount",categoryServiceImplementation.categoryCount());
+        model.addAttribute("activeBanner",highLightBannerImplementation.bannerCount());
 
         return "admin";
     }

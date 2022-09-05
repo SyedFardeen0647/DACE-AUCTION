@@ -27,22 +27,37 @@ public class Bidding_Service_Implementation implements Bidding_Service{
     @Override
     public String postBid(Double bidAmount,Long id) {
         Auction_Product product = auctionRepository.findById(id).get();
+        List<Auction_Bids> bids = biddingRepository.findByAuctionOrderByBidPriceDesc(product);
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         User user = userRepository.findByUsername(username);
+        Boolean priceExist=false;
 
 
         if(product!=null && user.getUserId() != product.getAuctionBy().getUserId()) {
 
-            Auction_Bids auctionBids = new Auction_Bids();
-            auctionBids.setAuction(product);
-            auctionBids.setCustomer(user);
-            auctionBids.setBidPrice(bidAmount);
-            auctionBids.setBidOn(LocalDateTime.now());
+            for (Auction_Bids bid:bids){
+                if (bid.getBidPrice().equals(bidAmount)){
+                    priceExist=true;
+                }
+            }
 
 
-            biddingRepository.save(auctionBids);
+            if(priceExist==false) {
 
-            return "Your Bid Has Posted Successfully";
+                Auction_Bids auctionBids = new Auction_Bids();
+                auctionBids.setAuction(product);
+                auctionBids.setCustomer(user);
+                auctionBids.setBidPrice(bidAmount);
+                auctionBids.setBidOn(LocalDateTime.now());
+
+
+                biddingRepository.save(auctionBids);
+
+                return "Your Bid Has Posted Successfully";
+            }
+            else {
+                return "Bid Amount Already Exist";
+            }
         }
 
         return "error,Given parameter are not valid";

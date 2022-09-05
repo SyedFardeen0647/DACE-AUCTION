@@ -35,9 +35,9 @@
                             <i class="uil uil-user"></i>
                         </div>
                         <div class="input-field">
-                            <input type="password" class="password" placeholder="Enter your password" th:field="*{password}" required>
+                            <input type="password" class="password" id="pass" placeholder="Enter your password" th:field="*{password}" required>
                             <i class="uil uil-lock icon"></i>
-                            <i class="uil uil-eye-slash showHidePw"></i>
+                            <i class="uil uil-eye-slash showHidePw" onclick="visiblePassword()"></i>
                         </div>
 
                         <div class="checkbox-text">
@@ -82,10 +82,29 @@
                             <i class="uil uil-envelope icon"></i>
                         </div>
 
+
                         <div class="input-field">
-                            <input type="password" class="password" placeholder="Create a password" th:field="*{password}" required>
+                            <select class="form-control" id="combo" style="margin-bottom:10px;"  >
+                                <option th:value="1" >CSC</option>
+                                <option th:value="2" >AI</option>
+                                <option th:value="3" >EEE</option>
+                                <option th:value="4" >ECE</option>
+                                <option th:value="5" >MBA</option>
+                              </select>
+                        </div>
+                        <div class="input-field">
+                            <select class="form-control" id="combo" style="margin-bottom:10px;" >
+                                <option th:value="1" >I year</option>
+                                <option th:value="2" >II year</option>
+                                <option th:value="3" >III year</option>
+                                <option th:value="4" >IV year</option>
+                              </select>
+                        </div>
+
+                        <div class="input-field">
+                            <input type="password" class="password" id="pass2" placeholder="Create a password" th:field="*{password}" required>
                             <i class="uil uil-lock icon"></i>
-                            <i class="uil uil-eye-slash showHidePw"></i>
+                            <i class="uil uil-eye-slash showHidePw" onclick="visiblePassword2()"></i>
                         </div>
 
                         <div class="input-field">
@@ -105,6 +124,11 @@
                                 <option th:value="3" >What is my fav color ?</option>
                             </select>
                         </div>
+
+                        
+
+                       
+                          
 
                         <div class="input-field">
                             <input type="text" placeholder="Answer" th:field="*{answer}" required>

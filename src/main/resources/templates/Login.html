@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Auction</title>
+<title>THE NEW COLLEGE-Auction</title>
 
 <script th:src="@{/required/jquery.min.js}"></script>
 <script th:src="@{/required/bootstrap.min.js}"></script>
@@ -30,6 +30,20 @@
 <!--       th:action="@{/signUp}" -->
 	    <form  th:object="${myUser}" class="register-form"  id="regForm" method="post" onsubmit="return false">
 	      <input type="text" id="cuser" placeholder="name" th:field="*{username}" required/>
+
+		  <select class="form-control" id="combo" style="margin-bottom:10px;" th:field="*{department}" >
+			<option th:value="1" >CSC</option>
+			<option th:value="2" >AI</option>
+			<option th:value="3" >EEE</option>
+			<option th:value="4" >ECE</option>
+			<option th:value="5" >MBA</option>
+	      </select>
+		  <select class="form-control" id="combo" style="margin-bottom:10px;" th:field="*{year}" >
+			<option th:value="1" >I year</option>
+			<option th:value="2" >II year</option>
+			<option th:value="3" >III year</option>
+			<option th:value="4" >IV year</option>
+	      </select>
        		
 	      <input type="password" id="cpass" placeholder="password" th:field="*{password}" required/>
       	  <input type="text" id="address" placeholder="address" th:field="*{address}" required/>
@@ -42,6 +56,10 @@
        	  	<option th:value="2" >What is my father name ?</option>
        	  	<option th:value="3" >What is my fav color ?</option>
 	      </select>
+
+
+
+
 	      
 	      <input type="text" id="answer" placeholder="answer" th:field="*{answer}" required/>
 	       <p id="msg-signUp" style="color:red;"></p>
