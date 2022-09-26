@@ -1,7 +1,10 @@
 $(function () {
     "use strict";
 //    Start without params
-    $("#range_01").ionRangeSlider();
+    $("#range_01").ionRangeSlider({
+        min: 1,
+        max: 100,
+    });
 
 
 //Set min value, max value and start point

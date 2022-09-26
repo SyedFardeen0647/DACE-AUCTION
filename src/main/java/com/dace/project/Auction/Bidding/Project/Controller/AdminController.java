@@ -1,11 +1,12 @@
 package com.dace.project.Auction.Bidding.Project.Controller;
 
 
+import com.dace.project.Auction.Bidding.Project.Model.Commission;
 import com.dace.project.Auction.Bidding.Project.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AdminController {
@@ -23,11 +24,16 @@ public class AdminController {
     private Category_Service_Implementation categoryServiceImplementation;
 
     @Autowired
+    private CommissionServiceImple commissionServiceImple;
+
+    @Autowired
     private HighLightBannerImplementation highLightBannerImplementation;
 
 
     @GetMapping("/admin")
     public String adminCRM(Model model){
+
+
 
         model.addAttribute("auction",auctionServiceImplementation.getAllAuctionProduct());
         model.addAttribute("userCount",userServiceImplementation.usersCount());
@@ -35,30 +41,26 @@ public class AdminController {
         model.addAttribute("completedAuction",completeAuctionImplementation.completeAuctionCount());
         model.addAttribute("categoryCount",categoryServiceImplementation.categoryCount());
         model.addAttribute("activeBanner",highLightBannerImplementation.bannerCount());
+        model.addAttribute("commissionPercentage",commissionServiceImple.findTopPercentage());
 
-        return "admin";
-    }
-
-    @GetMapping("/usersAdmin")
-    public String adminUsers(Model model){
+//        User List
 
         model.addAttribute("usersList",userServiceImplementation.userList());
-        return "users-admin";
+
+        return "main-admin";
     }
 
-    @GetMapping("/categoryAdmin")
-    public String adminCategory(Model model){
-        model.addAttribute("categoryList",categoryServiceImplementation.getAllCategory());
+    @GetMapping("/changeCommission/{percentage}")
+    @ResponseBody
+    public String changeCommision(@PathVariable("percentage") double percentage){
 
-        return "category-admin";
+        System.out.println("Changing Commission "+percentage);
+
+        commissionServiceImple.saveCommissionInfo(percentage);
+        return "Commission Changed Successfully";
     }
 
 
 
-    @GetMapping("/completeAdmin")
-    public String adminComplete(Model model){
-        model.addAttribute("completedList",completeAuctionImplementation.completeAuctionList());
-        return "complete-admin";
-    }
 
 }

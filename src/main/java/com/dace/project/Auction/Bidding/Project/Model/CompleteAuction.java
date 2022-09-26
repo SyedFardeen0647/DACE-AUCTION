@@ -20,14 +20,17 @@ public class CompleteAuction {
 
     private Double winningBidPrice;
 
+    private Double productCommission;
+
     private Integer active;
 
-    public CompleteAuction(Long completeId, User auctionWonBy, Auction_Product auctionProduct, LocalDateTime auctionCompleted, Double winningBidPrice, Integer active) {
+    public CompleteAuction(Long completeId, User auctionWonBy, Auction_Product auctionProduct, LocalDateTime auctionCompleted, Double winningBidPrice, Double productCommission, Integer active) {
         this.completeId = completeId;
         this.auctionWonBy = auctionWonBy;
         this.auctionProduct = auctionProduct;
         this.auctionCompleted = auctionCompleted;
         this.winningBidPrice = winningBidPrice;
+        this.productCommission = productCommission;
         this.active = active;
     }
 
@@ -72,6 +75,14 @@ public class CompleteAuction {
 
     public void setWinningBidPrice(Double winningBidPrice) {
         this.winningBidPrice = winningBidPrice;
+    }
+
+    public Double getProductCommission() {
+        return productCommission;
+    }
+
+    public void setProductCommission(Double productCommission) {
+        this.productCommission = productCommission;
     }
 
     public Integer getActive() {

@@ -20,6 +20,8 @@ public class User_Service_Implementation implements User_Service{
         user1.setPassword(user.getPassword());
         user1.setEmail(user.getEmail());
         user1.setPhoneNumber(user.getPhoneNumber());
+        user1.setDepartment(user.getDepartment());
+        user1.setYear(user.getYear());
         user1.setAddress(user.getAddress());
         user1.setQuestion(user.getQuestion());
         user1.setAnswer(user.getAnswer());
@@ -38,6 +40,8 @@ public class User_Service_Implementation implements User_Service{
         user1.setPassword(user.getPassword());
         user1.setEmail(user.getEmail());
         user1.setPhoneNumber(user.getPhoneNumber());
+        user1.setDepartment(user.getDepartment());
+        user1.setYear(user.getYear());
         user1.setAddress(user.getAddress());
         user1.setQuestion(user.getQuestion());
         user1.setAnswer(user.getAnswer());

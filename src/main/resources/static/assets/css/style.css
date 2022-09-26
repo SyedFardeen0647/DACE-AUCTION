@@ -4512,3 +4512,39 @@ h6.h1 {
     display: inline-block !important;
   }
 }
+
+
+.rupees{
+  font-size: 80px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.rupees::before{
+  content: "₹";
+}
+.c-custom{
+  height: 190px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.badge{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 160px;
+  background-color: green;
+  font-size: 100px;
+  color: white;
+}
+
+.split{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.per::after{
+  content: "%";
+
+}

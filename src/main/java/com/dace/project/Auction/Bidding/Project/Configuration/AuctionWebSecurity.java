@@ -68,6 +68,7 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/twilio")
                 .antMatchers("/admin/**")
                 .antMatchers("/users/**")
+                .antMatchers("/changeCommission/**")
                 .antMatchers("/topic/**","/user/**");
 
     }

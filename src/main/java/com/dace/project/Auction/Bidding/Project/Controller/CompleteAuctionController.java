@@ -4,10 +4,7 @@ import com.dace.project.Auction.Bidding.Project.Model.Auction_Bids;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
 import com.dace.project.Auction.Bidding.Project.Model.CompleteAuction;
 import com.dace.project.Auction.Bidding.Project.Model.User;
-import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implementation;
-import com.dace.project.Auction.Bidding.Project.Service.Bidding_Service_Implementation;
-import com.dace.project.Auction.Bidding.Project.Service.CompleteAuctionImplementation;
-import com.dace.project.Auction.Bidding.Project.Service.User_Service_Implementation;
+import com.dace.project.Auction.Bidding.Project.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +26,9 @@ public class CompleteAuctionController {
     @Autowired
     private CompleteAuctionImplementation completeAuctionImplementation;
 
+    @Autowired
+    private CommissionServiceImple commissionServiceImple;
+
 
 //    ************************************************************************COMPLETE AUCTION API********************************************************************
 
@@ -38,6 +38,8 @@ public class CompleteAuctionController {
     @PostMapping("/auction/{auctionId}/complete/{bidId}")
     @ResponseBody
     public String saveCompleteAuction(@PathVariable("auctionId") Long auctionId, @PathVariable("bidId") Long bidId){
+
+
 
         User user = userServiceImplementation.getSingleUser(1L);
 
@@ -51,6 +53,7 @@ public class CompleteAuctionController {
         winner.setAuctionProduct(auctionProduct);
         winner.setAuctionCompleted(LocalDateTime.now());
         winner.setWinningBidPrice(auctionBids.getBidPrice());
+        winner.setProductCommission((commissionServiceImple.findTopPercentage() * auctionBids.getBidPrice())/100);
         winner.setActive(1);
 
         auctionProduct.setActive(0);

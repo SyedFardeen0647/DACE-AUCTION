@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DACE | Bazaar-360</title>
+  <!-- ================= Favicon ================== -->
+  <!-- Standard -->
+
+  <script th:src="@{../js/jquery-2.2.3.js}"></script>
+  <!-- Retina iPad Touch Icon-->
+  <link rel="apple-touch-icon" sizes="144x144" href="http://placehold.it/144.png/000/fff">
+  <!-- Retina iPhone Touch Icon-->
+  <link rel="apple-touch-icon" sizes="114x114" href="http://placehold.it/114.png/000/fff">
+  <!-- Standard iPad Touch Icon-->
+  <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
+  <!-- Standard iPhone Touch Icon-->
+  <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+  <!-- Styles -->
+  <link th:href="@{assets/css/lib/calendar2/pignose.calendar.min.css}" rel="stylesheet">
+  <link th:href="@{assets/css/lib/chartist/chartist.min.css}" rel="stylesheet">
+  <link th:href="@{assets/css/lib/font-awesome.min.css}" rel="stylesheet">
+  <link th:href="@{assets/css/lib/themify-icons.css}" rel="stylesheet">
+  <link th:href="@{assets/css/lib/owl.carousel.min.css}" rel="stylesheet" />
+  <link th:href="@{assets/css/lib/owl.theme.default.min.css}" rel="stylesheet" />
+  <link th:href="@{assets/css/lib/rangSlider/ion.rangeSlider.css}" rel="stylesheet">
+  <!--Themes Jquery Bar Rating-->
+  <link  type="text/css" th:href="@{assets/css/lib/rangSlider/ion.rangeSlider.skinFlat.css}" rel="stylesheet">
+  <link  type="text/css" th:href="@{assets/css/lib/weather-icons.css}" rel="stylesheet" />
+  <link  type="text/css" th:href="@{assets/css/lib/menubar/sidebar.css}" rel="stylesheet">
+  <link  type="text/css" th:href="@{assets/css/lib/bootstrap.min.css}" rel="stylesheet">
+  <link  type="text/css" th:href="@{assets/css/lib/helper.css}" rel="stylesheet">
+  <link  type="text/css" th:href="@{assets/css/style.css}" rel="stylesheet">
+</head>
+
+
+
+<script th:inline="javascript">
+
+
+    function changeCommission(){
+
+         let value = Number($('.commissionValue').val());
+         console.log(value)
+
+         $.get("/changeCommission/"+value,
+         {
+         }
+         ,function(result)
+         {
+         location.reload();
+         $.notify(result,"success");
+
+         });
+
+    }
+
+
+</script>
+
+
+
+<body>
+
+<div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures">
+  <div class="nano">
+    <div class="nano-content">
+      <ul>
+        <div class="logo"><a href="index.html">
+          <!-- <img src="images/logo.png" alt="" /> --><span>Bazaar-360 | Admin</span></a></div>
+        <li class="label">Main</li>
+        <li id="dash"><a class="sidebar-sub-toggle"><i class="ti-home"></i> Dashboard  </a>
+          <ul>
+
+          </ul>
+        </li>
+
+        <li class="label">Features</li>
+
+        <li id="users"><a class="user" ><i class="ti-user"></i> Users </a></li>
+        <li id="category"><a ><i class="ti-link"></i> Category</a></li>
+        <li id="auction"><a ><i class="ti-layout-grid2"></i> Auction</a></li>
+        <li id="complete"><a ><i class="ti-check-box"></i> Completed Auction</a></li>
+        <li><a id="highlight" ><i class="ti-layers-alt"></i> Highlight Banner</a></li>
+        <li><a><i class="ti-close"></i> Logout</a></li>
+
+
+        <li class="label">Reset</li>
+        <li><a><i class="ti-na"></i> Clear All</a></li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- /# sidebar -->
+
+<div class="header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="float-left">
+          <div class="hamburger sidebar-toggle">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </div>
+        </div>
+        <div class="float-right">
+
+          <div class="dropdown dib">
+            <div class="header-icon" data-toggle="dropdown">
+                                <span class="user-avatar">John
+
+                                </span>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="content-wrap">
+  <div class="main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8 p-r-0 title-margin-right">
+          <div class="page-header">
+            <div class="page-title">
+              <h1>Hello, <span>Welcome Here</span></h1>
+            </div>
+          </div>
+        </div>
+        <!-- /# column -->
+        <div class="col-lg-4 p-l-0 title-margin-left">
+          <div class="page-header">
+            <div class="page-title">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Home</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <!-- /# column -->
+      </div>
+
+      <div id="row0" class="top-row">
+        <!-- /# row -->
+        <div class="row split">
+          <div class="col-lg-2.5">
+            <div class="card">
+              <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-user color-primary border-primary"></i>
+                </div>
+                <div class="stat-content dib">
+                  <div class="stat-text">Total Users</div>
+                  <div class="stat-digit" th:text="${userCount}" ></div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2.5">
+            <div class="card">
+              <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-layout-grid2 color-pink border-pink"></i>
+                </div>
+                <div class="stat-content dib">
+                  <div class="stat-text">Live Auctions</div>
+                  <div class="stat-digit" th:text="${activeAuction}"></div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2.5">
+            <div class="card">
+              <div class="stat-widget-one">
+                <div class="stat-icon dib"> <i class="ti-check-box color-success border-success"></i>
+                </div>
+                <div class="stat-content dib">
+                  <div class="stat-text">Completed Auction</div>
+                  <div class="stat-digit" th:text="${completedAuction}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2.5">
+            <div class="card">
+              <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-link color-danger border-danger"></i></div>
+                <div class="stat-content dib">
+                  <div class="stat-text">Total Categories</div>
+                  <div class="stat-digit" th:text="${categoryCount}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-2.5">
+            <div class="card">
+              <div class="stat-widget-one">
+                <div class="stat-icon dib"><i class="ti-pie-chart color-warning border-primary"></i></div>
+                <div class="stat-content dib">
+                  <div class="stat-text">Commission Percentage</div>
+                  <div class="stat-digit per" th:text="${commissionPercentage}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /# row -->
+
+
+        <div  class="row">
+          <div class="col-lg-6">
+            <div class="card nestable-cart">
+              <div class="card-title">
+                <h4>Set Product Commission Percentage</h4>
+                <div class="card-title-right-icon">
+                  <ul>
+
+                  </ul>
+                </div>
+              </div>
+              <div class="rangeslider">
+                <div>
+                  <input class="commissionValue" type="text" id="range_01" th:value="${commissionPercentage}" name="range" />
+                </div>
+              </div>
+
+              <button id="commission-value" onclick="changeCommission()" type="button" class="btn btn-primary btn-block  m-t-40">Activate</button>
+            </div>
+            <!-- /# card -->
+
+
+          </div>
+
+
+
+
+          <div class="col-lg-6">
+            <div class="card c-custom">
+
+              <div class="badge"><i class="ti-stats-up"></i></div>
+              <div class="c-amount">
+                <div class="card-title">Total Revenue Earned</div>
+                <div class="rupees js-count-up" data-value="564556"></div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="row1" class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="bootstrap-data-table-panel">
+              <div class="table-responsive">
+                <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                  <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Phone Number</th>
+                    <th>Email ID</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Role</th>
+                    <th>Access Change</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+                  <tr>
+                    <th>860</th>
+                    <th>syed</th>
+                    <th>55744445484</th>
+                    <th>Email@gmail.com</th>
+                    <th>BCA</th>
+                    <th>1 Year</th>
+                    <th>ADMIN</th>
+                    <th><a href="">Edit</a></th>
+                  </tr>
+
+
+
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /# card -->
+        </div>
+        <!-- /# column -->
+      </div>
+
+      <div id="row2" class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-validation">
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" >Category
+                    Name<span class="text-danger">*</span></label>
+                  <div class="col-lg-8">
+                    <input type="text" class="form-control" id="catName"
+                           name="categoryName" placeholder="Enter a category" required>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-lg-8 ml-auto">
+                    <button  id="catBtn" th:onclick=" 'catCreate()' " class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-title">
+              <h4>Table Hover </h4>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover ">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Category Name</th>
+                    <th>Category Status</th>
+                    <th>Remove</th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="category : ${categoryList} ">
+                    <th scope="row" th:text="${category.categoryId}"></th>
+                    <td th:text="${category.categoryName}"></td>
+                    <td class="color-success">Active</td>
+                    <td><button th:onclick=" 'deleteCat('+${category.categoryId}+')' " class="btn btn-danger">Remove</button></td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /# card -->
+        </div>
+      </div>
+
+
+      <div id="row3" class="row">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-validation">
+                <form id="auctionForm" class="form-valide" action="/createAuction" method="post" enctype="multipart/form-data">
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-username">Product Name
+                      <span class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control" id="val-username"
+                             name="title" placeholder="Enter a product name" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-email">Starting Price
+                      <span class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="number" class="form-control" id="val-email"
+                             name="startingPrice" placeholder="Enter a starting amount" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" >Ending Date
+                      <span class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="date" name="endingDate" class="form-control" id="setDate"
+                             required>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-select2">Select Category
+                      <span class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <select class="js-select2 form-control" id="val-select2"
+                              name="category" style="width: 100%;"
+                              data-placeholder="Choose one..">
+                        <option th:each="category : ${categories}"
+                                th:value="${category.categoryId}"
+                                th:utext="${category.categoryName}"/>
+
+                      </select>
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label"
+                           for="val-confirm-password">Product Description <span
+                            class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control"
+                             id="val-confirm-password" name="description"
+                             placeholder="Enter a description" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label"
+                           for="val-confirm-password">Product Image <span
+                            class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="file" class="form-control" id="file"
+                             name="images"  accept="image/x-png,image/jpeg,image/jpg" multiple required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-lg-8 ml-auto">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-title">
+              <h4>Table Hover </h4>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover ">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="auction : ${auctionList}">
+                    <th scope="row" th:text="${auction.auctionId}"></th>
+                    <td th:text="${auction.auctionTitle}"></td>
+                    <td><span class="badge badge-success" th:text="${auction.auctionCategory.categoryName}"></span></td>
+                    <td class="color-primary"><button
+                            class="btn btn-primary" >Update</button></td>
+                    <td class="color-primary"><button th:onclick="'auctionDelete('+${auction.auctionId}+')'"
+                                                      class="btn btn-danger">Delete</button></td>
+
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /# card -->
+        </div>
+      </div>
+
+      <div id="row4" class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-title">
+              <h4>Winner Table</h4>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover ">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Start Price</th>
+                    <th>Completed Price</th>
+                    <th>Commission Generated</th>
+                    <th>Winner</th>
+                    <th>Winner Contact</th>
+                    <th>Remove</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="complete : ${completedList}">
+                    <th scope="row" th:text="${complete.completeId}"></th>
+                    <td th:text="${complete.auctionProduct.auctionTitle}"></td>
+                    <td class="color-primary" th:text="${complete.auctionProduct.auctionStartingPrice}"></td>
+                    <td class="color-success" th:text="${complete.winningBidPrice}"></td>
+                    <td></td>
+                    <td th:text="${complete.auctionWonBy.username}"></td>
+                    <td th:text="${complete.auctionWonBy.phoneNumber}"></td>
+                    <td><button th:onclick="'completeDelete('+${complete.completeId}+')'" class="btn btn-danger">Remove</button></td>
+                  </tr>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /# card -->
+        </div>
+        <!-- /# column -->
+      </div>
+
+      <div id="row5" class="row">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-title">
+              <h4>Highlight Banner</h4>
+
+            </div>
+            <div class="card-body">
+              <div class="form-validation">
+                <form class="form-valide" action="/postBanner" method="post" enctype="multipart/form-data">
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-username">Banner
+                      Name<span class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="text" class="form-control" id="val-username"
+                             name="description" placeholder="Description" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-password">Banner Image
+                      <span class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <input type="file" class="form-control" id="val-password"
+                             name="image" placeholder="Choose one.." accept="image/x-png,image/jpeg,image/jpg" multiple required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-lg-4 col-form-label" for="val-select2">Product <span
+                            class="text-danger">*</span></label>
+                    <div class="col-lg-8">
+                      <select class="js-select2 form-control" id="val-select2"
+                              name="auctionId" style="width: 100%;"
+                              data-placeholder="Choose one..">
+                        <option th:each="auction : ${auction}"
+                                th:value="${auction.auctionId}"
+                                th:utext="${auction.auctionTitle}"></option>
+
+
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-lg-8 ml-auto">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </div>
+
+
+
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-title">
+              <h4>Table Hover </h4>
+
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover ">
+                  <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Banner Name</th>
+                    <th>Highlight Product</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr th:each="auction : ${auctionList}">
+                    <th scope="row" th:text="${auction.auctionId}"></th>
+                    <td th:text="${auction.auctionTitle}"></td>
+                    <td><span class="badge badge-success" th:text="${auction.auctionCategory.categoryName}"></span></td>
+                    <td class="color-primary"><button
+                            class="btn btn-primary" >Update</button></td>
+                    <td class="color-primary"><button th:onclick="'auctionDelete('+${auction.auctionId}+')'"
+                                                      class="btn btn-danger">Delete</button></td>
+
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- /# card -->
+        </div>
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+</div>
+
+<!-- jquery vendor -->
+<script th:src="@{assets/js/lib/jquery.min.js}"></script>
+<script th:src="@{assets/js/lib/jquery.nanoscroller.min.js}"></script>
+<!-- nano scroller -->
+<script th:src="@{assets/js/lib/menubar/sidebar.js}"></script>
+<script th:src="@{assets/js/lib/preloader/pace.min.js}"></script>
+<!-- sidebar -->
+
+<script th:src="@{assets/js/lib/bootstrap.min.js}"></script>
+<script th:src="@{assets/js/scripts.js}"></script>
+<!-- bootstrap -->
+
+
+
+<script th:src="@{assets/js/lib/weather/jquery.simpleWeather.min.js}"></script>
+<script th:src="@{assets/js/lib/weather/weather-init.js}"></script>
+<script th:src="@{assets/js/lib/circle-progress/circle-progress.min.js}"></script>
+<script th:src="@{assets/js/lib/circle-progress/circle-progress-init.js}"></script>
+
+
+<script th:src="@{assets/js/lib/owl-carousel/owl.carousel.min.js}"></script>
+<script th:src="@{assets/js/lib/owl-carousel/owl.carousel-init.js}"></script>
+<!-- scripit init-->
+<script th:src="@{assets/js/dashboard2.js}"></script>
+<script th:src="@{assets/js/custom2.js}"></script>
+
+<script th:src="@{assets/js/scripts.js}"></script>
+<script type="module" th:src="@{assets/js/count2.js}"></script>
+
+
+<!--Data Table  -->
+<script th:src="@{assets/js/lib/data-table/datatables.min.js}"></script>
+<script th:src="@{assets/js/lib/data-table/dataTables.buttons.min.js}"></script>
+<script th:src="@{assets/js/lib/data-table/jszip.min.js}"></script>
+
+<script th:src="@{assets/js/lib/data-table/vfs_fonts.js}"></script>
+<script th:src="@{assets/js/lib/data-table/buttons.html5.min.js}"></script>
+<script th:src="@{assets/js/lib/data-table/buttons.print.min.js}"></script>
+<script th:src="@{assets/js/lib/data-table/buttons.colVis.min.js}"></script>
+<script th:src="@{assets/js/lib/data-table/datatables-init.js}"></script>
+<!--ION Range Slider JS-->
+<script th:src="@{assets/js/lib/rangeSlider/ion.rangeSlider.min.js}"></script>
+<!-- scripit init-->
+<script th:src="@{assets/js/lib/rangeSlider/moment.js}"></script>
+<!-- scripit init-->
+<script th:src="@{assets/js/lib/rangeSlider/moment-with-locales.js}"></script>
+
+<!-- scripit init-->
+<script th:src="@{assets/js/lib/rangeSlider/rangeslider.init.js}"></script>
+
+<link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css}">
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js}"></script>
+<script th:src="@{/required/notify.min.js}"></script>
+<script th:src="@{/js/modernizr.custom.js}"></script>
+
+
+</body>
+
+</html>

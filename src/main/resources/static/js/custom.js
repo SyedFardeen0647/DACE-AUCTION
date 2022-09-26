@@ -187,9 +187,11 @@ jQuery(document).ready(function($)
     		// Uncomment line below and replace date
 	    	// var target_date = new Date("Dec 7, 2017").getTime();
 
+	    	const day = $('#day').html()
+
 	    	// comment lines below
 	    	var date = new Date();
-	    	date.setDate(date.getDate() + 9);
+	    	date.setDate(date.getDate() + Number(day));
 	    	var target_date = date.getTime();
 	    	//----------------------------------------
 	 

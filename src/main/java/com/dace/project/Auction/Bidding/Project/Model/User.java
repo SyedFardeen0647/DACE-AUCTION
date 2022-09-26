@@ -20,6 +20,10 @@ public class User {
 
     private String phoneNumber;
 
+    private String department;
+
+    private String year;
+
     private String address;
 
     private Integer question = 1;
@@ -34,12 +38,14 @@ public class User {
     }
 
 
-    public User(Long userId, String username, String password, String email, String phoneNumber, String address, Integer question, String answer, Integer active, String role) {
+    public User(Long userId, String username, String password, String email, String phoneNumber, String department, String year, String address, Integer question, String answer, Integer active, String role) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.department = department;
+        this.year = year;
         this.address = address;
         this.question = question;
         this.answer = answer;
@@ -87,6 +93,22 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
+    }
+
     public String getAddress() {
         return address;
     }
@@ -131,14 +153,17 @@ public class User {
     public String toString() {
         return "User{" +
                 "userId=" + userId +
-                ", userName='" + username + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", department='" + department + '\'' +
+                ", year='" + year + '\'' +
                 ", address='" + address + '\'' +
                 ", question=" + question +
                 ", answer='" + answer + '\'' +
                 ", active=" + active +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
