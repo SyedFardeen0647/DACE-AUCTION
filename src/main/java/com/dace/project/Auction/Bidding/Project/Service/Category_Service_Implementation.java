@@ -55,4 +55,12 @@ public class Category_Service_Implementation implements Category_Service{
     public Long categoryCount() {
         return categoryRepository.count();
     }
+
+    @Override
+    public List<Category> allActiveCategory() {
+        List<Category> activeCategories = categoryRepository.findByActive(1);
+        return activeCategories;
+    }
+
+
 }

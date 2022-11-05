@@ -1,6 +1,8 @@
 package com.dace.project.Auction.Bidding.Project.Model;
 
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -20,6 +22,7 @@ public class CompleteAuction {
 
     private Double winningBidPrice;
 
+    @Value("${some.key:0.0}")
     private Double productCommission;
 
     private Integer active;

@@ -48,6 +48,8 @@ jQuery(document).ready(function($)
 		setHeader();
 	});
 
+	$(".carousel-inner div:first-child").addClass("active");
+
 	initMenu();
 	initTimer();
 	initFavorite();

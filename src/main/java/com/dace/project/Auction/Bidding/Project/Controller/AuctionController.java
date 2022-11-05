@@ -3,6 +3,7 @@ package com.dace.project.Auction.Bidding.Project.Controller;
 import com.dace.project.Auction.Bidding.Project.DTO.CreateAuctionDTO;
 import com.dace.project.Auction.Bidding.Project.Model.Auction_Product;
 import com.dace.project.Auction.Bidding.Project.Model.Category;
+import com.dace.project.Auction.Bidding.Project.Repository.CompleteAuctionRepository;
 import com.dace.project.Auction.Bidding.Project.Service.Auction_Service_implementation;
 import com.dace.project.Auction.Bidding.Project.Service.Category_Service_Implementation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,8 @@ public class AuctionController {
 
     @Autowired
     private Category_Service_Implementation categoryServiceImplementation;
+
+
 
 
     //***************************************AUCTION API********************************************************
@@ -128,7 +131,9 @@ public class AuctionController {
     @GetMapping("/category/delete/{id}")
     @ResponseBody
     public String deleteCategory(@PathVariable("id") Long id){
-        categoryServiceImplementation.deleteCategory(id);
+        Category category = categoryServiceImplementation.getSingleCategory(id);
+        category.setActive(0);
+        categoryServiceImplementation.updateCategory(category,id);
 
         return "Category Deleted successfully";
     }
@@ -139,10 +144,10 @@ public class AuctionController {
         return imageFileName;
     }
 
-    @GetMapping("/admin/category/count")
-    public Long categoryCount(){
-        return categoryServiceImplementation.categoryCount();
-    }
+
+
+
+
 
 
 }

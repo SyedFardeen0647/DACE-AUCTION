@@ -123,5 +123,38 @@ public class Auction_Service_implementation implements Auction_Service {
         return auctionRepository.count();
     }
 
+    @Override
+    public void updateProduct(CreateAuctionDTO product, MultipartFile multipartFile, Long id) {
+
+        Auction_Product auctionProduct = auctionRepository.findById(id).get();
+
+        Category category = categoryRepository.findById(product.getCategory()).get();
+        String username= SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+
+
+        auctionProduct.setAuctionBy(user);
+        auctionProduct.setAuctionTitle(product.getTitle());
+        auctionProduct.setAuctionStartingPrice(product.getStartingPrice());
+        auctionProduct.setAuctionPostedDate(LocalDateTime.now());
+        auctionProduct.setAuctionEndingDate(DateUtil.getDate(product.getEndingDate()));
+        auctionProduct.setAuctionCategoryId(product.getCategory());
+        auctionProduct.setAuctionCategory(category);
+        auctionProduct.setAuctionDescription(product.getDescription());
+        auctionProduct.setActive(1);
+        try {
+            auctionProduct.setImages(Base64.getEncoder().encodeToString(multipartFile.getBytes()));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+         auctionRepository.save(auctionProduct);
+
+    }
+
 
 }

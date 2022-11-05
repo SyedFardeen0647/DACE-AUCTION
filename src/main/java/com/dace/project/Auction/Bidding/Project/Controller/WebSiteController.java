@@ -15,10 +15,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.Principal;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 @Controller
 public class WebSiteController {
@@ -50,10 +55,85 @@ public class WebSiteController {
         if(count!=null && count.equals("0"))
             return "Banned";
 
+        List<String> departmentOption = new ArrayList<>();
+        departmentOption.add("CSC");
+        departmentOption.add("AI");
+        departmentOption.add("MBA");
+        departmentOption.add("PETRO");
+        departmentOption.add("EEE");
+        departmentOption.add("ECE");
+
+        List<String> years = new ArrayList<>();
+        years.add("I year");
+        years.add("II year");
+        years.add("III year");
+        years.add("IV year");
 
 
         model.addAttribute("myUser", new User());
+        model.addAttribute("department", departmentOption);
+        model.addAttribute("years",years);
         return principal==null ? "LoginT" : "/";
+    }
+
+    @RequestMapping(value = "/checkEmail", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkEmail(@ModelAttribute("myUser") User user, String ques, Model model, HttpServletRequest request, HttpServletResponse response) {
+        User findUser=userServiceImplementation.findByEmail(user.getEmail());
+
+        if(ques!=null) {
+            if(user.getQuestion() == findUser.getQuestion() && findUser.getAnswer().equals(user.getAnswer())) {
+                model.addAttribute("user", user);
+                return "done";
+            }
+
+            return "Wrong Answer";
+        }
+
+        //Checking if email is valid
+
+        boolean isEmailValid=(findUser!=null);
+
+        //Checking in try left for e-mail
+
+        for(Cookie cookie : request.getCookies()) {
+            if(cookie.getName().equals("emailTry") && !isEmailValid) {
+                int count=Integer.parseInt(cookie.getValue());
+                count=(isEmailValid ? count : count-1);
+                cookie.setValue(count+"");
+                response.addCookie(cookie);
+                return count!=0 ? "Email Not Found You Have "+count+" Left !!!!" : "Banned";
+            }
+        }
+
+        //If Cookie is not created then create a cookie
+        if(!isEmailValid) {
+            Cookie cookie=new Cookie("emailTry", "3");
+            response.addCookie(cookie);
+            return "Email Not Found You Have "+3+" Left !!!!";
+        }
+
+        return ","+findUser.getEmail();
+
+    }
+
+
+    @RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkEmail(@ModelAttribute("myUser") User user) {
+        User findUser=userServiceImplementation.findByEmail(user.getEmail());
+
+        if(user.getPassword().length()<9)
+            return "Password Length Must Be Greater Than 8";
+
+
+        else if(user.getQuestion() == findUser.getQuestion() && findUser.getAnswer().equals(user.getAnswer())) {
+            findUser.setPassword(user.getPassword());
+            userServiceImplementation.saveUser(findUser);
+            return "";
+        }
+
+        return "Something went wrong <br> Try refreshing page";
     }
 
 
@@ -85,7 +165,7 @@ public class WebSiteController {
             return "Email Already Registered";
 
         else if(userServiceImplementation.findByUserName(user.getUsername())!=null)
-            return "Username Taken";
+            return "Username Already Taken ";
 
         else {
 
@@ -105,10 +185,12 @@ public class WebSiteController {
 
 
         model.addAttribute("banner",highLightBannerImplementation.getBanner());
-        model.addAttribute("allCategory",categoryServiceImplementation.getAllCategory());
+        model.addAttribute("allCategory",categoryServiceImplementation.allActiveCategory());
         model.addAttribute("allAuction",auctionServiceImplementation.findAuctionByActive(1));
         model.addAttribute("winners",completeAuctionImplementation.completeAuctionList());
-
+        model.addAttribute("sold",completeAuctionImplementation.completeAuctionCount());
+        model.addAttribute("totalEarned",completeAuctionImplementation.sumOfTotalCommission());
+        model.addAttribute("live",auctionServiceImplementation.allAuctionCount());
 
         return "index";
     }
@@ -135,6 +217,14 @@ public class WebSiteController {
 
         return "Auction Posted Successfully";
 
+    }
+    @PostMapping("/auction/update/{id}")
+    @ResponseBody
+    public String updateAuctionProduct(CreateAuctionDTO product, @RequestPart("images")MultipartFile multipartFile,@PathVariable("id") Long id){
+
+        auctionServiceImplementation.updateProduct(product,multipartFile,id);
+
+        return "Product Update Successfully";
     }
 
 

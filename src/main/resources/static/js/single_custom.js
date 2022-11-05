@@ -45,7 +45,9 @@ jQuery(document).ready(function($)
 	$(document).on('scroll', function()
 	{
 		setHeader();
-	});
+
+
+
 
 	initMenu();
 	initThumbnail();

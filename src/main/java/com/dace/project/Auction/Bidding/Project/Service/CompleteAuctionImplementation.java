@@ -38,5 +38,16 @@ public class CompleteAuctionImplementation implements CompleteAuctionService{
          auctionRepository.deleteById(id);
     }
 
+    @Override
+    public double sumOfTotalCommission() {
+
+        try{
+            return auctionRepository.sumOfTotalCommission();
+        }
+        catch (Exception e){
+            return 0.0;
+        }
+    }
+
 
 }

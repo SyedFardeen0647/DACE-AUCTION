@@ -35,18 +35,29 @@ public class AdminController {
 
 
 
-        model.addAttribute("auction",auctionServiceImplementation.getAllAuctionProduct());
+        model.addAttribute("auction",auctionServiceImplementation.findAuctionByActive(1));
         model.addAttribute("userCount",userServiceImplementation.usersCount());
         model.addAttribute("activeAuction",auctionServiceImplementation.allAuctionCount());
         model.addAttribute("completedAuction",completeAuctionImplementation.completeAuctionCount());
         model.addAttribute("categoryCount",categoryServiceImplementation.categoryCount());
         model.addAttribute("activeBanner",highLightBannerImplementation.bannerCount());
         model.addAttribute("commissionPercentage",commissionServiceImple.findTopPercentage());
+        model.addAttribute("totalEarned",completeAuctionImplementation.sumOfTotalCommission());
+
+
 
 //        User List
 
         model.addAttribute("usersList",userServiceImplementation.userList());
 
+//        Categories List
+        model.addAttribute("categoryList",categoryServiceImplementation.allActiveCategory());
+
+//        Complete Auction List
+        model.addAttribute("completedList",completeAuctionImplementation.adminAllCompleteAuction());
+
+//        HighLight Banner List
+        model.addAttribute("allHighlightBanner",highLightBannerImplementation.getBanner());
         return "main-admin";
     }
 
@@ -59,6 +70,14 @@ public class AdminController {
         commissionServiceImple.saveCommissionInfo(percentage);
         return "Commission Changed Successfully";
     }
+
+//    @GetMapping("/admin/testing")
+//    @ResponseBody
+//    public String testingApi(){
+//        System.out.println("Testing Api............ "+completeAuctionImplementation.sumOfTotalCommission());
+//        return "Test";
+//    }
+
 
 
 

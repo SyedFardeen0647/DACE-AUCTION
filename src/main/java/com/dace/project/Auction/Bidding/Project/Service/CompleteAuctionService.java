@@ -16,4 +16,6 @@ public interface CompleteAuctionService {
 
     public void completeAuctionDelete(Long id);
 
+    double sumOfTotalCommission();
+
 }

@@ -44,6 +44,7 @@
                             <div class="checkbox-content">
                                 <input type="checkbox" id="logCheck">
                                 <label for="logCheck" class="text">Remember me</label>
+                                <p id="msg" style="color:red;"></p>
                             </div>
 
                             <a href="#" class="text forgot-link">Forgot password?</a>
@@ -74,7 +75,7 @@
 
                     <form th:object="${myUser}" class="register-form"  id="regForm" method="post" onsubmit="return false">
                         <div class="input-field">
-                            <input type="text" placeholder="Enter your name" th:field="*{username}" required>
+                            <input type="text" placeholder="Enter unique Username" th:field="*{username}" required>
                             <i class="uil uil-user"></i>
                         </div>
                         <div class="input-field">
@@ -84,21 +85,18 @@
 
 
                         <div class="input-field">
-                            <select class="form-control" id="combo" style="margin-bottom:10px;"  >
-                                <option th:value="1" >CSC</option>
-                                <option th:value="2" >AI</option>
-                                <option th:value="3" >EEE</option>
-                                <option th:value="4" >ECE</option>
-                                <option th:value="5" >MBA</option>
+                            <select th:field="*{department}" class="form-control" id="combo1" style="margin-bottom:10px;"  >
+                                <option th:each="depart : ${department}" th:value="${depart}" th:text="${depart}" ></option>
+
                               </select>
                         </div>
                         <div class="input-field">
-                            <select class="form-control" id="combo" style="margin-bottom:10px;" >
-                                <option th:value="1" >I year</option>
-                                <option th:value="2" >II year</option>
-                                <option th:value="3" >III year</option>
-                                <option th:value="4" >IV year</option>
-                              </select>
+                            <select th:field="*{year}" class="form-control" id="combo2" style="margin-bottom:10px;" >
+
+                                <option th:each="year : ${years}" th:value="${year}" th:text="${year}" ></option>
+
+
+                            </select>
                         </div>
 
                         <div class="input-field">
@@ -161,12 +159,13 @@
                     <form class="recover-email" th:object="${myUser}" id="recoverEmail" onsubmit="return false">
 
                         <div class="input-field">
-                            <input type="text" placeholder="Enter your email" id="email" th:field="*{email}" required>
+                            <input type="text" placeholder="Enter your email" id="emails" th:field="*{email}" required>
                             <i class="uil uil-envelope icon"></i>
                         </div>
 
                         <div class="input-field button">
-                            <input type="submit" id="secure-next" value="Next">
+                            <p id="mailMsg" style="color:red;"></p>
+                            <input type="submit" class="secure-mail" id="secure-next" value="Next">
                         </div>
                     </form>
 
@@ -185,25 +184,28 @@
         <div class="container-question">
             <div class="forms">
                 <div class="form logint">
-                    <span class="title">Question?</span>
+                    <span class="title">Recovery Question?</span>
 
-                    <form action="#">
+                    <form class="secure" th:object="${myUser}" id="secureQus" onsubmit="return false">
 
-<!--                        <div class="input-field">-->
-<!--                            <select class="form-control" id="combo" style="margin-bottom:10px;" th:field="*{question}" >-->
-<!--                                <option th:value="1" >What is my last name ?</option>-->
-<!--                                <option th:value="2" >What is my father name ?</option>-->
-<!--                                <option th:value="3" >What is my fav color ?</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
+
+                    <div class="input-field">
+                            <select class="form-control" id="combo" style="margin-bottom:10px;" th:field="*{question}"  >
+                                <option th:value="1" >What is my last name ?</option>
+                                <option th:value="2" >What is my father name ?</option>
+                                <option th:value="3" >What is my fav color ?</option>
+                            </select>
+                        </div>
 
                         <div class="input-field">
-                            <input type="text" placeholder="Answer" required>
+                            <input type="hidden" th:field="*{email}" id="mainEmail">
+                            <input type="text" id="sAnswer" placeholder="answer" th:field="*{answer}" required/>
+                            <input type="hidden" value="next" name="ques">
                             <i class="uil uil-user"></i>
                         </div>
 
                         <div class="input-field button">
-                            <input type="button" class="reset-pass" value="Next">
+                            <input  type=submit id="secure-next"  value="Next" >
                         </div>
                     </form>
 
@@ -220,16 +222,19 @@
                 <div class="form logint">
                     <span class="title">New Password</span>
 
-                    <form action="#">
+                    <form class="resetPass" th:object="${myUser}" onsubmit="return false">
 
                         <div class="input-field">
-                            <input type="password" class="password" placeholder="New Password" required>
+                            <input type="password" id="rpass" placeholder="New Password" th:field="*{password}" required/>
                             <i class="uil uil-lock icon"></i>
-                            <i class="uil uil-eye-slash showHidePw"></i>
+                            <i class="uil uil-eye-slash showHidePw" onclick="visiblePassword()"></i>
+                            <input type="hidden" id="rQues" th:field="*{question}">
+                            <input type="hidden" id="rAns" th:field="*{answer}">
+                            <input type="hidden" id="rEmail" th:field="*{email}">
                         </div>
 
                         <div class="input-field button">
-                            <input type="button" class="reset" value="Reset">
+                            <input type="submit" id="reset" value="Reset">
                         </div>
                     </form>
 
@@ -247,6 +252,7 @@
 </div>
 
 
+<script th:src="@{/required/notify.min.js}"></script>
 
 
 

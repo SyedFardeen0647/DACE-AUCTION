@@ -74,43 +74,28 @@ $(document).ready(function(){
         			 $(".container").slideToggle("slow");
 
         		});
-        		$('.secure-mail').click(function(){
-        			$(".container-question").slideToggle("slow");
 
-        			$(".container-forgot").slideToggle("slow");
 
-        	   });
 
-        	   $('.reset-pass').click(function(){
-        		$(".container-password").slideToggle("slow");
 
-        		$(".container-question").slideToggle("slow");
 
-           });
-
-        	   $('.reset').click(function(){
-        		$(".container").slideToggle("slow");
-
-        		$(".container-question").slideToggle("slow");
-
-           });
 		
 		$('.resetPass').submit(function(){
-			
-			  $.post("/resetPassword",$(this).serialize(),
-					  function(response){
-						  if(response == ""){
-							  $(".resetPass").slideToggle("slow");
-							  $(".secure").slideToggle("slow");
-							  $.notify("Password Changed Successfully","success");
-						  }
-						  else{
-							  $(".resetPass #rpass").notify( response , { position:"right" }	);
-						  }
-						  
-					  });
-			 
-		});
+
+        			  $.post("/resetPassword",$(this).serialize(),
+        					  function(response){
+        						  if(response == ""){
+        							  $(".container-password").slideToggle("slow");
+        							  $(".container").slideToggle("slow");
+        							  $.notify("Password Changed Successfully","success");
+        						  }
+        						  else{
+        							  $(".resetPass #rpass").notify( response , { position:"right" }	);
+        						  }
+
+        					  });
+
+        		});
 		$('#secureQus').submit(function(){
 			
 			
@@ -120,8 +105,8 @@ $(document).ready(function(){
 							  $("#rQues").val( $("#secureQus #combo option").filter(":selected").val() );
 							  $("#rAns").val( $("#secureQus #sAnswer").val() );
 							  $("#rEmail").val( $("#mainEmail").val() );
-							  $(".secure").slideToggle("slow");
-							  $(".resetPass").slideToggle("slow");
+							  $(".container-question").slideToggle("slow");
+							  $(".container-password").slideToggle("slow");
 							  
 						  }
 						  else{
@@ -140,15 +125,15 @@ $(document).ready(function(){
 					  function(response){
 						  var b=response.split(',');
 						  if(b[0]==""){
-							  $(".secure").slideToggle("slow");
-							  $(".recover-email").slideToggle("slow");
+							  $(".container-question").slideToggle("slow");
+							  $(".container-forgot").slideToggle("slow");
 							  $("#mainEmail").val(b[1]);
 						  }
 						  else{
 							 
 							  if(response=="Banned"){
 //								  ALERT('HI2');
-								  window.location = "/";
+								  window.location = "/login";
 							  }
 							  else{
 								  $("#mailMsg").text(response);
@@ -167,7 +152,8 @@ $(document).ready(function(){
 	                    $(this).serialize(),
 	                    function (response) {
 							if(response!="index")
-								$("#msg").text('Wrong Username Or Password')
+//								$("#msg").text('Wrong Username Or Password')
+								$.notify("Wrong Username Or Password","error")
 							else
 								window.location = '/'
 				});

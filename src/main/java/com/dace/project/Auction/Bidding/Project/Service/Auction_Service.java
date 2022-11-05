@@ -27,5 +27,7 @@ public interface Auction_Service {
 
     public Long allAuctionCount();
 
+    void updateProduct(CreateAuctionDTO product, MultipartFile file, Long id);
+
 
 }

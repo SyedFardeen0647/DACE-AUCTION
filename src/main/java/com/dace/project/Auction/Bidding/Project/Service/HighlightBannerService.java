@@ -12,7 +12,7 @@ public interface HighlightBannerService {
 
     List<HighlightBanner> getBanner();
 
-    public void deleteHighLightBanner();
+    public void deleteHighLightBanner(Long id);
 
     Long bannerCount();
 }

@@ -40,7 +40,7 @@
 
 <script th:inline="javascript">
 
-
+<!--Change Commission Function-->
     function changeCommission(){
 
          let value = Number($('.commissionValue').val());
@@ -57,6 +57,138 @@
          });
 
     }
+
+<!--Create Category Function-->
+    function categoryCreate(){
+    $.post('/createCategory',
+    {
+        categoryName:$('#catName').val()
+    },
+    function(a)
+    {
+
+       $.notify(a,"success");
+
+        setTimeout(function ()
+        {
+          location.reload();
+         }, 1000);
+
+
+    });
+
+    }
+
+<!--Delete Category Function-->
+    function deleteCat(id){
+
+    $.get('/category/delete/'+id,
+    {
+    },
+    function (a){
+
+     $.notify(a,"info");
+
+        setTimeout(function ()
+        {
+          location.reload();
+         }, 1000);
+
+    });
+
+    }
+
+<!--Create Auction Function-->
+
+   $(document).ready(function(){
+
+	var today = new Date();
+	var dd = today.getDate();
+
+	var mm = today.getMonth()+1;
+	var yyyy = today.getFullYear();
+	if(dd<10)
+	{
+	    dd='0'+dd;
+	}
+
+	if(mm<10)
+	{
+	    mm='0'+mm;
+	}
+	dd=dd+1;
+	today = yyyy+'-'+mm+'-'+dd;
+	document.getElementById("setDate").min=today;
+});
+
+
+<!--Auction Update Function-->
+
+function auctionUpdate(id){
+  console.log(id)
+}
+
+$("#auctionUpdateForm").submit(function(){
+console.log("Update form Submitted");
+});
+
+
+<!--Auction Delete Function-->
+
+    function auctionDelete(id){
+
+     $.get('/auction/delete/'+id,
+	  	{
+
+	  	},
+	  	function(a){
+	  	$.notify(a,"info");
+	  	console.log("pro delete");
+
+	  	setTimeout(function ()
+        {
+          location.reload();
+         }, 1000);
+
+	  	}
+	);
+
+}
+
+<!--Delete Completed Auction Function-->
+
+    function completeDelete(id){
+     $.get("/completeAuction/delete/"+id,
+     {
+
+     },function(a){
+         $.notify(a,"info");
+         setTimeout(function ()
+        {
+          location.reload();
+         }, 1000);
+     });
+
+}
+
+
+<!--Delete Highlight Banner-->
+
+    function bannerDelete(id){
+    $.get("/deleteBanner/"+id,
+    {
+    },
+    function(a){
+
+    $.notify(a,"info");
+         setTimeout(function ()
+        {
+          location.reload();
+         }, 1000);
+
+    });
+    }
+
 
 
 </script>
@@ -85,7 +217,7 @@
         <li id="auction"><a ><i class="ti-layout-grid2"></i> Auction</a></li>
         <li id="complete"><a ><i class="ti-check-box"></i> Completed Auction</a></li>
         <li><a id="highlight" ><i class="ti-layers-alt"></i> Highlight Banner</a></li>
-        <li><a><i class="ti-close"></i> Logout</a></li>
+        <li><a href="/"><i class="ti-close"></i> Logout</a></li>
 
 
         <li class="label">Reset</li>
@@ -112,7 +244,7 @@
 
           <div class="dropdown dib">
             <div class="header-icon" data-toggle="dropdown">
-                                <span class="user-avatar">John
+                                <span class="user-avatar">
 
                                 </span>
 
@@ -251,7 +383,7 @@
               <div class="badge"><i class="ti-stats-up"></i></div>
               <div class="c-amount">
                 <div class="card-title">Total Revenue Earned</div>
-                <div class="rupees js-count-up" data-value="564556"></div>
+                <div class="rupees js-count-up" th:data-value="${totalEarned}"></div>
               </div>
 
             </div>
@@ -279,89 +411,17 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
 
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
+                  <tr th:each="user: ${usersList}">
+                    <th th:text="${user.userId}"></th>
+                    <th th:text="${user.username}"></th>
+                    <th th:text="${user.phoneNumber}"></th>
+                    <th th:text="${user.email}"></th>
+                    <th th:text="${user.department}"></th>
+                    <th th:text="${user.year}"></th>
+                    <th th:text="${user.role}"></th>
                     <th><a href="">Edit</a></th>
                   </tr>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
-                  <tr>
-                    <th>860</th>
-                    <th>syed</th>
-                    <th>55744445484</th>
-                    <th>Email@gmail.com</th>
-                    <th>BCA</th>
-                    <th>1 Year</th>
-                    <th>ADMIN</th>
-                    <th><a href="">Edit</a></th>
-                  </tr>
-
-
 
 
 
@@ -392,7 +452,7 @@
 
                 <div class="form-group row">
                   <div class="col-lg-8 ml-auto">
-                    <button  id="catBtn" th:onclick=" 'catCreate()' " class="btn btn-primary">Submit</button>
+                    <button  id="catBtn" onclick="categoryCreate()" class="btn btn-primary">Submit</button>
                   </div>
                 </div>
 
@@ -435,7 +495,6 @@
         </div>
       </div>
 
-
       <div id="row3" class="row">
         <div class="col-lg-6">
           <div class="card">
@@ -446,7 +505,7 @@
                     <label class="col-lg-4 col-form-label" for="val-username">Product Name
                       <span class="text-danger">*</span></label>
                     <div class="col-lg-8">
-                      <input type="text" class="form-control" id="val-username"
+                      <input type="text" class="form-control" id="val-username1"
                              name="title" placeholder="Enter a product name" required>
                     </div>
                   </div>
@@ -472,10 +531,10 @@
                     <label class="col-lg-4 col-form-label" for="val-select2">Select Category
                       <span class="text-danger">*</span></label>
                     <div class="col-lg-8">
-                      <select class="js-select2 form-control" id="val-select2"
+                      <select class="js-select2 form-control" id="val-select3"
                               name="category" style="width: 100%;"
                               data-placeholder="Choose one..">
-                        <option th:each="category : ${categories}"
+                        <option th:each="category : ${categoryList}"
                                 th:value="${category.categoryId}"
                                 th:utext="${category.categoryName}"/>
 
@@ -534,20 +593,118 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="auction : ${auctionList}">
+                  <tr th:each="auction : ${auction}">
                     <th scope="row" th:text="${auction.auctionId}"></th>
                     <td th:text="${auction.auctionTitle}"></td>
                     <td><span class="badge badge-success" th:text="${auction.auctionCategory.categoryName}"></span></td>
-                    <td class="color-primary"><button
-                            class="btn btn-primary" >Update</button></td>
+                    <td class="color-primary"><button class="btn btn-primary" data-toggle="modal" th:data-target="${'#'+auction.auctionId}" th:onclick="'auctionUpdate('+${auction.auctionId}+')'" >Update</button></td>
                     <td class="color-primary"><button th:onclick="'auctionDelete('+${auction.auctionId}+')'"
                                                       class="btn btn-danger">Delete</button></td>
+
+                    <div th:inline="text" class="modal fade" th:id="${auction.auctionId}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle" th:text="${auction.auctionTitle}" ></h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="card">
+                              <div class="card-body">
+                                <div class="form-validation">
+                                  <form id="auctionUpdateForm" class="form-valide" th:action="${'/auction/update/'+auction.auctionId}"  method="post" enctype="multipart/form-data">
+                                    <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="val-username">Product Name
+                                        <span class="text-danger">*</span></label>
+                                      <div class="col-lg-8">
+                                        <input type="text" class="form-control" id="val-username1.0"
+                                               name="title" placeholder="Enter a product name" required>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="val-email">Starting Price
+                                        <span class="text-danger">*</span></label>
+                                      <div class="col-lg-8">
+                                        <input type="number" class="form-control" id="val-email1.0"
+                                               name="startingPrice" placeholder="Enter a starting amount" required>
+                                      </div>
+                                    </div>
+                                    <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" >Ending Date
+                                        <span class="text-danger">*</span></label>
+                                      <div class="col-lg-8">
+                                        <input type="date" name="endingDate" class="form-control" id="setDate1"
+                                               required>
+                                      </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="val-select2">Select Category
+                                        <span class="text-danger">*</span></label>
+                                      <div class="col-lg-8">
+                                        <select class="js-select2 form-control" id="val-select4"
+                                                name="category" style="width: 100%;"
+                                                data-placeholder="Choose one..">
+                                          <option th:each="category : ${categoryList}"
+                                                  th:value="${category.categoryId}"
+                                                  th:utext="${category.categoryName}"/>
+
+                                        </select>
+                                      </div>
+                                    </div>
+
+
+                                    <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label"
+                                             for="val-confirm-password">Product Description <span
+                                              class="text-danger">*</span></label>
+                                      <div class="col-lg-8">
+                                        <input type="text" class="form-control"
+                                               id="val-confirm-passwords" name="description"
+                                               placeholder="Enter a description" required>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label"
+                                             for="val-confirm-password">Product Image <span
+                                              class="text-danger">*</span></label>
+                                      <div class="col-lg-8">
+                                        <input type="file" class="form-control" id="file"
+                                               name="images"  accept="image/x-png,image/jpeg,image/jpg" multiple required>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                      <div class="col-lg-8 ml-auto">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
                   </tr>
                   </tbody>
                 </table>
               </div>
             </div>
+
+
+
+
           </div>
           <!-- /# card -->
         </div>
@@ -572,6 +729,8 @@
                     <th>Commission Generated</th>
                     <th>Winner</th>
                     <th>Winner Contact</th>
+                    <th>Department</th>
+                    <th>Year</th>
                     <th>Remove</th>
                   </tr>
                   </thead>
@@ -581,9 +740,11 @@
                     <td th:text="${complete.auctionProduct.auctionTitle}"></td>
                     <td class="color-primary" th:text="${complete.auctionProduct.auctionStartingPrice}"></td>
                     <td class="color-success" th:text="${complete.winningBidPrice}"></td>
-                    <td></td>
+                    <td class="color-primary" th:text="${complete.productCommission}"></td>
                     <td th:text="${complete.auctionWonBy.username}"></td>
                     <td th:text="${complete.auctionWonBy.phoneNumber}"></td>
+                    <td th:text="${complete.auctionWonBy.department}"></td>
+                    <td th:text="${complete.auctionWonBy.year}"></td>
                     <td><button th:onclick="'completeDelete('+${complete.completeId}+')'" class="btn btn-danger">Remove</button></td>
                   </tr>
 
@@ -670,18 +831,15 @@
                     <th>#</th>
                     <th>Banner Name</th>
                     <th>Highlight Product</th>
-                    <th>Update</th>
                     <th>Delete</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr th:each="auction : ${auctionList}">
-                    <th scope="row" th:text="${auction.auctionId}"></th>
-                    <td th:text="${auction.auctionTitle}"></td>
-                    <td><span class="badge badge-success" th:text="${auction.auctionCategory.categoryName}"></span></td>
-                    <td class="color-primary"><button
-                            class="btn btn-primary" >Update</button></td>
-                    <td class="color-primary"><button th:onclick="'auctionDelete('+${auction.auctionId}+')'"
+                  <tr th:each="banner : ${allHighlightBanner}">
+                    <th scope="row" th:text="${banner.bannerId}"></th>
+                    <td th:text="${banner.bannerDescription}"></td>
+                    <td class="color-primary" th:text="${banner.auctionProduct.auctionTitle}"> </td>
+                    <td class="color-primary"><button th:onclick="'bannerDelete('+${banner.bannerId}+')'"
                                                       class="btn btn-danger">Delete</button></td>
 
                   </tr>
@@ -694,15 +852,6 @@
         </div>
 
       </div>
-
-
-
-
-
-
-
-
-
 
 
     </div>

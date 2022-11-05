@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Controller
 public class BannerController {
 
@@ -21,14 +23,7 @@ public class BannerController {
 
 
 
-//    @GetMapping("/banner")
-//    public String create(Model model){
-//
-//        model.addAttribute("auctionList",auctionServiceImplementation.getAllAuctionProduct());
-//
-//
-//        return null;
-//    }
+
 
 
     @PostMapping("/postBanner")
@@ -41,12 +36,17 @@ public class BannerController {
 
     }
 
-    @GetMapping("/deleteBanner")
+    @GetMapping("/deleteBanner/{id}")
     @ResponseBody
-    public String deleteBanner(){
+    public String deleteBanner(@PathVariable("id") Long id){
 
-        highLightBannerImplementation.deleteHighLightBanner();
+        highLightBannerImplementation.deleteHighLightBanner(id);
 
         return "Banner Deleted Successfully";
+    }
+
+    @GetMapping("/allBanners")
+    public List<HighlightBanner> getAllBanners(){
+        return highLightBannerImplementation.getBanner();
     }
 }

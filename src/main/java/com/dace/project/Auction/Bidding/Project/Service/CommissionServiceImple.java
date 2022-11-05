@@ -43,6 +43,8 @@ public class CommissionServiceImple implements CommissionService{
         return allCommission.get(0).getIntrestPercntage();
     }
 
+
+
     @Override
     public List<Commission> findFirstElement() {
         return null;

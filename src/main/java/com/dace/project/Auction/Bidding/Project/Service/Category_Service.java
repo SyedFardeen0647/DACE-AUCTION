@@ -17,4 +17,6 @@ public interface Category_Service {
     public void deleteCategory(Long id);
 
     public Long categoryCount();
+
+    public List<Category> allActiveCategory();
 }

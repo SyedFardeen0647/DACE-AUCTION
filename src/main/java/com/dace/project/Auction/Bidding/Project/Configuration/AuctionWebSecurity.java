@@ -32,6 +32,7 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/createAuction").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -62,13 +63,15 @@ public class AuctionWebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/assets/**")
                 .antMatchers("/signUp")
                 .antMatchers("/postBanner")
-                .antMatchers("/admin/users")
                 .antMatchers("/checkEmail")
                 .antMatchers("/resetPassword")
                 .antMatchers("/twilio")
-                .antMatchers("/admin/**")
                 .antMatchers("/users/**")
                 .antMatchers("/changeCommission/**")
+                .antMatchers("/category/**")
+                .antMatchers("/completeAuction/**")
+                .antMatchers("/deleteBanner/**")
+                .antMatchers("/createCategory/**")
                 .antMatchers("/topic/**","/user/**");
 
     }
